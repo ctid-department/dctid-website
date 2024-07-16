@@ -19,7 +19,11 @@ async function getData(slug: string) {
   return data;
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Article({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const data: fullArticle = await getData(params.slug);
 
   console.log(data);

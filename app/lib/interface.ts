@@ -11,3 +11,9 @@ export interface fullArticle {
   content: any;
   titleImage: any;
 }
+
+export interface fullPage {
+  currentSlug: string;
+  title: string;
+  content: any;
+}
