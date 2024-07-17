@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div>
-      <div className="min-h-96 mt-8 prose prose-blue prose-md">
+      <div className="min-h-96 my-8 prose prose-blue prose-md">
         <PortableText
           value={data.content}
           components={{
