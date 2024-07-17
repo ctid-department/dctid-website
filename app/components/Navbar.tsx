@@ -13,8 +13,28 @@ import upseal from "../images/UP-seal.png";
 import ctidlogo from "../images/CTID-logo.png";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { client } from "../lib/sanity";
+import { navItem } from "../lib/interface";
 
-export default function Navbar() {
+async function getNavData() {
+  const query = `
+  *[_type == 'navigation'] | order(title asc) {
+    title,
+    items[] {
+      "title": internal->title,
+      "link": "/" + internal->slug.current
+    }
+  }`;
+
+  const data = await client.fetch(query);
+  return data || null;
+}
+
+export default async function Navbar() {
+  const navItems: navItem[] = await getNavData();
+
+  console.log(navItems);
+
   return (
     <nav className="w-full relative flex flex-col items-center max-w-4xl mx-auto px-4 py-5">
       <div className="w-full relative flex flex-col md:flex-row items-center justify-between mb-4">
@@ -55,86 +75,22 @@ export default function Navbar() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>About CTID</NavigationMenuTrigger>
-              <NavigationMenuContent className="z-10">
-                <ul className="md:p-6 md:w-[400px]">
-                  <ListItem href="/history" title="History"></ListItem>
-                  <ListItem
-                    href="/mission-vision-core-values"
-                    title="Mission, Vision, Core Values"
-                  ></ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Academics</NavigationMenuTrigger>
-              <NavigationMenuContent className="z-10">
-                <ul className="md:p-6 md:w-[400px]">
-                  <ListItem
-                    href="/undergraduate-programs"
-                    title="Undergraduate Programs"
-                  ></ListItem>
-                  <ListItem
-                    href="/graduate-programs"
-                    title="Graduate Programs"
-                  ></ListItem>
-                  <ListItem href="/admissions" title="Admissions"></ListItem>
-                  <ListItem href="/exhibits" title="Exhibits"></ListItem>
-                  <ListItem
-                    href="/student-works"
-                    title="Student Works"
-                  ></ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>People</NavigationMenuTrigger>
-              <NavigationMenuContent className="z-10">
-                <ul className="md:p-6 md:w-[400px]">
-                  <ListItem
-                    href="/faculty-and-staff"
-                    title="Faculty and Staff"
-                  ></ListItem>
-                  <ListItem href="/students" title="Students"></ListItem>
-                  <ListItem href="/admissions" title="Admissions"></ListItem>
-                  <ListItem href="/exhibits" title="Exhibits"></ListItem>
-                  <ListItem
-                    href="/student-works"
-                    title="Student Works"
-                  ></ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                Facilities and Services
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="z-10">
-                <ul className="md:p-6 md:w-[400px]">
-                  <ListItem
-                    href="/che-costume-museum"
-                    title="CHE Costume Museum"
-                  ></ListItem>
-                  <ListItem
-                    href="/studio-and-laboratory"
-                    title="Studio and Laboratory"
-                  ></ListItem>
-                  <ListItem
-                    href="/digital-loom-and-weaving-room"
-                    title="Digital Loom and Weaving Room"
-                  ></ListItem>
-                  <ListItem
-                    href="/career-guidance-workshop"
-                    title="Career Guidance Workshop for Interior Design Graduates"
-                  ></ListItem>
-                  <ListItem
-                    href="/extramural-activities"
-                    title="Extramural Activities"
-                  ></ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            {navItems.map((item, idx) => (
+              <NavigationMenuItem key={idx}>
+                <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+                <NavigationMenuContent className="z-10">
+                  <ul className="md:p-6 md:w-[400px]">
+                    {item.items.map((linkItem, linkIdx) => (
+                      <ListItem
+                        key={linkIdx}
+                        href={linkItem.link}
+                        title={linkItem.title}
+                      ></ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
       </div>

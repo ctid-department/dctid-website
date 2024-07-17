@@ -17,3 +17,13 @@ export interface fullPage {
   title: string;
   content: any;
 }
+
+export interface linkItem {
+  title: string;
+  link: string;
+}
+
+export interface navItem {
+  title: string;
+  items: linkItem[];
+}
