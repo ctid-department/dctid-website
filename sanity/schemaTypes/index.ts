@@ -4,3 +4,4 @@ import navigation from './navigation'
 import page from './page'
 
 export const schemaTypes = [article, page, navigation, link]
+
