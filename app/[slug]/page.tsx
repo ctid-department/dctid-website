@@ -3,6 +3,7 @@ import { client, urlFor } from "../lib/sanity";
 
 import { PortableText } from "next-sanity";
 import ImageComponent from "../components/ImageComponent";
+import Modules from "../components/Modules";
 
 export const revalidate = 30;
 
@@ -11,7 +12,7 @@ async function getPageData(slug: string) {
   *[_type == 'page' && slug.current == '${slug}'] {
     "currentSlug": slug.current,
     title,
-    content
+    modules[]
   }[0]`;
 
   const data = await client.fetch(query);
@@ -33,17 +34,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div>
-      <div className="min-h-96 my-8 prose prose-blue prose-md">
-        <PortableText
-          value={data.content}
-          components={{
-            types: {
-              image: ImageComponent,
-            },
-          }}
-        />
-      </div>
+    <div className="my-4">
+      <h1>
+        <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+          {data.title}
+        </span>
+      </h1>
+      <Modules modules={data?.modules} />
     </div>
   );
 }

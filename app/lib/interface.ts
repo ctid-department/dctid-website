@@ -1,8 +1,8 @@
 export interface simpleArticleCard {
   title: string;
-  smallDescription: string;
   currentSlug: string;
   titleImage: any;
+  creationDate: string;
 }
 
 export interface fullArticle {
@@ -15,7 +15,7 @@ export interface fullArticle {
 export interface fullPage {
   currentSlug: string;
   title: string;
-  content: any;
+  modules: any;
 }
 
 export interface linkItem {
@@ -27,4 +27,3 @@ export interface navItem {
   title: string;
   items: linkItem[];
 }
-

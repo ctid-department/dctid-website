@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import internal from 'stream'
 
 export default defineType({
   name: 'link',
@@ -46,24 +47,18 @@ export default defineType({
   preview: {
     select: {
       label: 'label',
-      _type: 'internal._type',
       title: 'internal.title',
-      slug: 'internal.metadata.slug.current',
+      slug: 'internal.slug.current',
       external: 'external',
+      media: 'internal.titleImage',
     },
-    prepare: ({label, _type, title, slug, external}) => {
-      let path = external || (slug && (slug === 'index' ? '/' : `/${slug}`))
-      let params = ''
-
-      if (path && path.includes('?')) {
-        ;[path, params] = path.split('?')
-      }
+    prepare: ({label, title, slug, external, media}) => {
+      let link = external ? external : '/' + slug
 
       return {
         title: label || title,
-        subtitle: [_type === 'article' ? '/article' : null, path, params ? `?${params}` : null]
-          .filter(Boolean)
-          .join(''),
+        subtitle: link,
+        media,
       }
     },
   },

@@ -15,14 +15,16 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { client } from "../lib/sanity";
 import { navItem } from "../lib/interface";
+import { FaFacebook } from "react-icons/fa";
+import { MdSearch } from "react-icons/md";
 
 async function getNavData() {
   const query = `
   *[_type == 'navigation'] | order(title asc) {
     title,
     items[] {
-      "title": internal->title,
-      "link": "/" + internal->slug.current
+      "title": label,
+      "link": coalesce("/" + internal->slug.current, external)
     }
   }`;
 
@@ -48,15 +50,21 @@ export default async function Navbar() {
             </Link>
           </div>
           <div className="flex flex-col items-center md:items-start max-w-lg text-center md:text-left">
-            <Link href="/" className="font-bold text-xl md:text-2xl">
+            <Link href="/" className="font-bold text-xl md:text-xl uppercase">
               Department of Clothing, Textiles, and Interior Design
             </Link>
-            <div className="text-sm md:text-base">
+            <div className="text-sm uppercase">
               University of the Philippines Diliman
             </div>
           </div>
         </div>
-        <div className="flex items-center">🔍 Search</div>
+        <div className="flex items-center gap-5">
+          <MdSearch size={24} className="hover:text-gray-600 cursor-pointer" />
+          <FaFacebook
+            size={24}
+            className="hover:text-gray-600 cursor-pointer"
+          />
+        </div>
       </div>
       <div className="w-full relative flex items-center justify-center mx-auto py-2 border rounded">
         <NavigationMenu>

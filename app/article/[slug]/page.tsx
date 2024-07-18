@@ -29,10 +29,10 @@ export default async function Article({
 
   console.log(data);
   return (
-    <div>
+    <div className="my-4">
       <h1>
         <span className="block text-base text-center text-primary font-semibold tracking-wide">
-          Posts {">"} {data.title}
+          News {">"} {data.title}
         </span>
         <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
           {data.title}
@@ -45,10 +45,10 @@ export default async function Article({
         height={800}
         alt="Title Image"
         priority
-        className="rounded-lg mt-8 border"
+        className="rounded-lg mt-8 border w-full"
       />
 
-      <div className="mt-16 prose prose-blue prose-md">
+      <div className="mx-auto mt-16 prose prose-blue prose-md">
         <PortableText
           value={data.content}
           components={{

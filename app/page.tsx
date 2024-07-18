@@ -1,54 +1,46 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { fullPage, simpleArticleCard } from "./lib/interface";
+import { fullPage } from "./lib/interface";
 import { client, urlFor } from "./lib/sanity";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
+import { PortableText } from "next-sanity";
+import ImageComponent from "./components/ImageComponent";
+import Modules from "./components/Modules";
 
 export const revalidate = 30;
 
-async function getArticleData() {
+async function getPageData() {
   const query = `
-  *[_type == 'article'] | order(_createdAt desc) {
-  title,
-    smallDescription,
+  *[_type == 'page' && slug == null] {
     "currentSlug": slug.current,
-    titleImage
-  }`;
+    title,
+    modules[]
+  }[0]`;
 
   const data = await client.fetch(query);
-
-  return data;
+  return data || null;
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const data: simpleArticleCard[] = await getArticleData();
+  const data: fullPage = await getPageData();
 
   console.log(data);
-  console.log(params.slug);
+
+  if (!data) {
+    return (
+      <div className="min-h-80 text-center mt-16">
+        <h1 className="text-3xl font-bold">404 - Page Not Found</h1>
+        <p className="mt-4">The page you are looking for does not exist.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-5">
-      {data.map((article, idx) => (
-        <Card key={idx}>
-          <Image
-            src={urlFor(article.titleImage).url()}
-            alt="image"
-            width={500}
-            height={500}
-            className="rounded-t-lg h-[200px] object-cover"
-          />
-          <CardContent className="mt-5">
-            <h3 className="text-lg line-clamp-2 font-bold">{article.title}</h3>
-            <p className="line-clamp-3 text-sm mt-2 text-gray-600">
-              {article.smallDescription}
-            </p>
-            <Button asChild className="w-full mt-7">
-              <Link href={`/article/${article.currentSlug}`}>Read more</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      ))}
+    <div className="my-4">
+      <h1>
+        <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+          {data.title}
+        </span>
+      </h1>
+      <Modules modules={data?.modules} />
     </div>
   );
 }
