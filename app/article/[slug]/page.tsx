@@ -1,4 +1,5 @@
 import ImageComponent from "@/app/components/ImageComponent";
+import Hero from "@/app/components/Hero";
 import { fullArticle } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "next-sanity";
