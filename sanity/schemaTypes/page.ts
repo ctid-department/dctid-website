@@ -26,17 +26,10 @@ export default defineType({
       title: 'Title Image',
     },
     {
-      name: 'content',
+      name: 'modules',
       type: 'array',
-      title: 'Content',
-      of: [
-        {
-          type: 'block',
-        },
-        {
-          type: 'image',
-        },
-      ],
+      title: 'Modules',
+      of: [{type: 'richtext-module'}, {type: 'hero.split'}, {type: 'articles-list'}],
     },
   ],
   preview: {
@@ -47,7 +40,7 @@ export default defineType({
     },
     prepare: ({title, slug, media}) => ({
       title,
-      subtitle: '/' + slug.current,
+      subtitle: slug ? '/' + slug.current : '/',
       media,
     }),
   },
