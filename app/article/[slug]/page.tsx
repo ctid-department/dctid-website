@@ -34,11 +34,6 @@ export default async function Article({
         <span className="block text-base text-center text-primary font-semibold tracking-wide">
           News {">"} {data.title}
         </span>
-        <Hero src={urlFor(data.titleImage).url()} className="h-[60vh] my-3">
-          <h1 className="text-white text-center bg-[rgba(0,0,0,0.5)] text-3xl p-1">
-              {data.title}
-          </h1>
-        </Hero>
         <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
           {data.title}
         </span>
