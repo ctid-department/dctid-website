@@ -1,10 +1,12 @@
 import {defineField, defineType} from 'sanity'
 import {count} from '../utils'
+import {GrNavigate} from 'react-icons/gr'
 
 export default defineType({
   name: 'navigation',
   title: 'Navigation',
   type: 'document',
+  icon: GrNavigate,
   fields: [
     defineField({
       name: 'title',

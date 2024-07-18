@@ -1,7 +1,12 @@
-export default {
+import {RiArticleLine} from 'react-icons/ri'
+import {PiArticleMedium} from 'react-icons/pi'
+import {defineField, defineType} from 'sanity'
+
+export default defineType({
   name: 'article',
   type: 'document',
   title: 'Article',
+  icon: PiArticleMedium,
   fields: [
     {
       name: 'title',
@@ -21,12 +26,6 @@ export default {
       type: 'image',
       title: 'Title Image',
     },
-
-    {
-      name: 'smallDescription',
-      type: 'text',
-      title: 'Small description',
-    },
     {
       name: 'content',
       type: 'array',
@@ -41,4 +40,16 @@ export default {
       ],
     },
   ],
-}
+  preview: {
+    select: {
+      title: 'title',
+      slug: 'slug',
+      media: 'titleImage',
+    },
+    prepare: ({title, slug, media}) => ({
+      title,
+      subtitle: '/article/' + slug.current,
+      media: media,
+    }),
+  },
+})
