@@ -1,67 +1,46 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { fullPage, simpleArticleCard } from "./lib/interface";
+import { fullPage } from "./lib/interface";
 import { client, urlFor } from "./lib/sanity";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
+import { PortableText } from "next-sanity";
+import ImageComponent from "./components/ImageComponent";
+import Modules from "./components/Modules";
 
 export const revalidate = 30;
 
-async function getArticleData() {
+async function getPageData() {
   const query = `
-  *[_type == 'article'] | order(_createdAt desc) {
-  title,
-    title,
+  *[_type == 'page' && slug == null] {
     "currentSlug": slug.current,
-    titleImage,
-    "creationDate": _createdAt
-  }`;
+    title,
+    modules[]
+  }[0]`;
 
   const data = await client.fetch(query);
-
-  return data;
-}
-
-function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-PH", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  return data || null;
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const data: simpleArticleCard[] = await getArticleData();
+  const data: fullPage = await getPageData();
 
   console.log(data);
-  console.log(params.slug);
+
+  if (!data) {
+    return (
+      <div className="min-h-80 text-center mt-16">
+        <h1 className="text-3xl font-bold">404 - Page Not Found</h1>
+        <p className="mt-4">The page you are looking for does not exist.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="mx-auto max-w-3xl grid grid-cols-1 md:grid-cols-2 my-5 gap-8">
-      {data.map((article, idx) => (
-        <Card key={idx} className="shadow rounded">
-          <Link href={`/article/${article.currentSlug}`}>
-            <Image
-              src={urlFor(article.titleImage).url()}
-              alt="image"
-              width={500}
-              height={500}
-              className="rounded-t h-[200px] object-cover"
-            />
-          </Link>
-          <CardContent className="p-4">
-            <Link href={`/article/${article.currentSlug}`}>
-              <h3 className="text-md line-clamp-2 font-semibold">
-                {article.title}
-              </h3>
-            </Link>
-            <p className="line-clamp-3 text-xs mt-1 text-gray-600">
-              {formatDate(article.creationDate)}
-            </p>
-          </CardContent>
-        </Card>
-      ))}
+    <div className="my-4">
+      <h1>
+        <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+          {data.title}
+        </span>
+      </h1>
+      <Modules modules={data?.modules} />
     </div>
   );
 }

@@ -15,7 +15,7 @@ export interface fullArticle {
 export interface fullPage {
   currentSlug: string;
   title: string;
-  content: any;
+  modules: any;
 }
 
 export interface linkItem {
