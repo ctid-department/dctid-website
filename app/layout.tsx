@@ -17,7 +17,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // FIXME: should use parallax instead https://www.w3schools.com/howto/howto_css_parallax.asp
+  // FIXME: should use background-image instead https://www.w3schools.com/howto/howto_css_parallax.asp
+  // FIXME: try parallax effect? https://blog.logrocket.com/create-parallax-scrolling-css/
   return (
     <html lang="en">
       <body className={inter.className}>
