@@ -1,9 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {MdOutlineArticle} from 'react-icons/md'
 
 export default defineType({
   name: 'page',
   title: 'Page',
   type: 'document',
+  icon: MdOutlineArticle,
   fields: [
     {
       name: 'title',
@@ -19,6 +21,11 @@ export default defineType({
       },
     },
     {
+      name: 'titleImage',
+      type: 'image',
+      title: 'Title Image',
+    },
+    {
       name: 'content',
       type: 'array',
       title: 'Content',
@@ -32,4 +39,16 @@ export default defineType({
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      slug: 'slug',
+      media: 'titleImage',
+    },
+    prepare: ({title, slug, media}) => ({
+      title,
+      subtitle: '/' + slug.current,
+      media,
+    }),
+  },
 })

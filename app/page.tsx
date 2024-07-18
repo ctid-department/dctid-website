@@ -11,14 +11,24 @@ async function getArticleData() {
   const query = `
   *[_type == 'article'] | order(_createdAt desc) {
   title,
-    smallDescription,
+    title,
     "currentSlug": slug.current,
-    titleImage
+    titleImage,
+    "creationDate": _createdAt
   }`;
 
   const data = await client.fetch(query);
 
   return data;
+}
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-PH", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -28,24 +38,27 @@ export default async function Page({ params }: { params: { slug: string } }) {
   console.log(params.slug);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-5">
+    <div className="mx-auto max-w-3xl grid grid-cols-1 md:grid-cols-2 my-5 gap-8">
       {data.map((article, idx) => (
-        <Card key={idx}>
-          <Image
-            src={urlFor(article.titleImage).url()}
-            alt="image"
-            width={500}
-            height={500}
-            className="rounded-t-lg h-[200px] object-cover"
-          />
-          <CardContent className="mt-5">
-            <h3 className="text-lg line-clamp-2 font-bold">{article.title}</h3>
-            <p className="line-clamp-3 text-sm mt-2 text-gray-600">
-              {article.smallDescription}
+        <Card key={idx} className="shadow rounded">
+          <Link href={`/article/${article.currentSlug}`}>
+            <Image
+              src={urlFor(article.titleImage).url()}
+              alt="image"
+              width={500}
+              height={500}
+              className="rounded-t h-[200px] object-cover"
+            />
+          </Link>
+          <CardContent className="p-4">
+            <Link href={`/article/${article.currentSlug}`}>
+              <h3 className="text-md line-clamp-2 font-semibold">
+                {article.title}
+              </h3>
+            </Link>
+            <p className="line-clamp-3 text-xs mt-1 text-gray-600">
+              {formatDate(article.creationDate)}
             </p>
-            <Button asChild className="w-full mt-7">
-              <Link href={`/article/${article.currentSlug}`}>Read more</Link>
-            </Button>
           </CardContent>
         </Card>
       ))}

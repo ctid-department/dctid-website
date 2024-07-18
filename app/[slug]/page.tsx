@@ -34,7 +34,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div>
-      <div className="min-h-96 my-8 prose prose-blue prose-md">
+      <h1>
+        <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+          {data.title}
+        </span>
+      </h1>
+      <div className="mx-auto my-8 prose prose-blue prose-md">
         <PortableText
           value={data.content}
           components={{
