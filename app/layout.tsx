@@ -17,12 +17,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // FIXME: should use parallax instead https://www.w3schools.com/howto/howto_css_parallax.asp
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <Image src={HeroImage} alt="UPD Oblation" width={0} height={0} sizes="100vw 100vh" className="w-screen h-[600px] fixed top-0 object-cover bg-rose-700 z-[-999]"/>
-        <div className="relative top-[50vh] w-screen bg-black p-[1%]" >
+        <div className="bg-white w-screen shadow-[0_0_15px_15px_rgba(0,0,0,0.5)]">
+          <Navbar />
+        </div>
+        <Image src={HeroImage} alt="UPD Oblation" width={0} height={0} sizes="100vw 100vh" className="w-screen h-screen fixed top-0 object-cover bg-rose-700 z-[-999]"/>
+        <div className="bg-white shadow-[0_0_15px_15px_rgba(0,0,0,0.5)] relative top-[55vh] w-screen p-[1%]" >
           <main className="max-w-2xl mx-auto px-4">{children}</main>
         </div>
       </body>
