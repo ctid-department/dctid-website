@@ -1,4 +1,3 @@
-import urlBuilder from "@sanity/image-url";
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
 import { urlFor } from "../lib/sanity";
