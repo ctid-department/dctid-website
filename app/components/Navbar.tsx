@@ -8,15 +8,9 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import Image from "next/image";
-import upseal from "../images/UP-seal.png";
-import ctidlogo from "../images/CTID-logo.png";
 import React from "react";
-import { cn } from "@/lib/utils";
 import { client } from "../lib/sanity";
 import { navItem } from "../lib/interface";
-import { FaFacebook } from "react-icons/fa";
-import { MdSearch } from "react-icons/md";
 
 async function getNavData() {
   const query = `
