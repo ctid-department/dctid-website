@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="my-4">
+    <div className="my-4 mt-8">
       <h1>
         <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
           {data.title}
