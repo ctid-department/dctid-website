@@ -1,6 +1,5 @@
-import {RiArticleLine} from 'react-icons/ri'
 import {PiArticleMedium} from 'react-icons/pi'
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 
 export default defineType({
   name: 'article',
@@ -12,6 +11,7 @@ export default defineType({
       name: 'title',
       type: 'string',
       title: 'Title of article',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -22,9 +22,10 @@ export default defineType({
       },
     },
     {
-      name: 'titleImage',
+      name: 'heroImage',
       type: 'image',
-      title: 'Title Image',
+      title: 'Hero Image',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'content',
@@ -44,7 +45,7 @@ export default defineType({
     select: {
       title: 'title',
       slug: 'slug',
-      media: 'titleImage',
+      media: 'heroImage',
     },
     prepare: ({title, slug, media}) => ({
       title,

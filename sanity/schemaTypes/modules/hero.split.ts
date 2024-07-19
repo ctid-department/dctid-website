@@ -24,11 +24,13 @@ export default defineType({
           initialValue: 'left',
         }),
       ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'content',
       type: 'array',
       of: [{type: 'block'}],
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

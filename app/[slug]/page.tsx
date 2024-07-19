@@ -22,7 +22,7 @@ async function getPageData(slug: string) {
 export default async function Page({ params }: { params: { slug: string } }) {
   const data: fullPage = await getPageData(params.slug);
 
-  console.log(data);
+  // console.log(data);
 
   if (!data) {
     return (

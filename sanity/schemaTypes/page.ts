@@ -11,6 +11,7 @@ export default defineType({
       name: 'title',
       type: 'string',
       title: 'Title of page',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -21,9 +22,9 @@ export default defineType({
       },
     },
     {
-      name: 'titleImage',
+      name: 'heroImage',
       type: 'image',
-      title: 'Title Image',
+      title: 'Hero Image',
     },
     {
       name: 'modules',
@@ -36,7 +37,7 @@ export default defineType({
     select: {
       title: 'title',
       slug: 'slug',
-      media: 'titleImage',
+      media: 'heroImage',
     },
     prepare: ({title, slug, media}) => ({
       title,
