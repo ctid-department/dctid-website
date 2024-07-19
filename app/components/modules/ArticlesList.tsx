@@ -17,7 +17,7 @@ async function getArticleData() {
     title,
       title,
       "currentSlug": slug.current,
-      titleImage,
+      heroImage,
       "creationDate": _createdAt
     }`;
 
@@ -45,7 +45,7 @@ const ArticlesList: React.FC<Props> = async ({ display }) => {
           <Card key={idx} className="shadow rounded">
             <Link href={`/article/${article.currentSlug}`}>
               <Image
-                src={urlFor(article.titleImage).url()}
+                src={urlFor(article.heroImage).url()}
                 alt="image"
                 width={500}
                 height={500}

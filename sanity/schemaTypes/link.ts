@@ -50,7 +50,7 @@ export default defineType({
       title: 'internal.title',
       slug: 'internal.slug.current',
       external: 'external',
-      media: 'internal.titleImage',
+      media: 'internal.heroImage',
     },
     prepare: ({label, title, slug, external, media}) => {
       let link = external ? external : '/' + slug

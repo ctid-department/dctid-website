@@ -12,7 +12,7 @@ async function getData(slug: string) {
     "currentSlug": slug.current,
     title,
     content,
-    titleImage
+    heroImage
   }[0]`;
 
   const data = await client.fetch(query);
@@ -26,7 +26,7 @@ export default async function Article({
 }) {
   const data: fullArticle = await getData(params.slug);
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="my-4">
       <h1>
@@ -39,10 +39,10 @@ export default async function Article({
       </h1>
 
       <Image
-        src={urlFor(data.titleImage).url()}
+        src={urlFor(data.heroImage).url()}
         width={800}
         height={800}
-        alt="Title Image"
+        alt="Hero Image"
         priority
         className="rounded-lg mt-8 border w-full"
       />
