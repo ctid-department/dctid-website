@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, KeyboardEvent, Suspense } from "react";
+import { useState, KeyboardEvent } from "react";
 import { MdSearch } from "react-icons/md";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 
-export default function Search() {
+export default function SearchBar() {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const searchParams = useSearchParams();
@@ -40,27 +40,25 @@ export default function Search() {
   }
 
   return (
-    <Suspense>
-      <div className="relative flex flex-1 flex-shrink-0 items-center">
-        {!isSearchVisible ? (
-          <button onClick={toggleSearch} className="" aria-label="Open search">
+    <div className="relative flex flex-1 flex-shrink-0 items-center">
+      {!isSearchVisible ? (
+        <button onClick={toggleSearch} className="" aria-label="Open search">
+          <MdSearch className="h-6 w-6" />
+        </button>
+      ) : (
+        <div className="w-full flex items-center gap-2">
+          <Input
+            className="text-black focus:!ring-ctid-green"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <button onClick={toggleSearch} className="" aria-label="Search">
             <MdSearch className="h-6 w-6" />
           </button>
-        ) : (
-          <div className="w-full flex items-center gap-2">
-            <Input
-              className="text-black focus:!ring-ctid-green"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={handleKeyPress}
-            />
-            <button onClick={toggleSearch} className="" aria-label="Search">
-              <MdSearch className="h-6 w-6" />
-            </button>
-          </div>
-        )}
-      </div>
-    </Suspense>
+        </div>
+      )}
+    </div>
   );
 }
