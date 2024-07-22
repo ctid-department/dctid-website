@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavbarWrapper from "./components/NavbarWrapper";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <Navbar />
+        <NavbarWrapper>
+          <Navbar />
+        </NavbarWrapper>
         <main className="max-w-4xl mx-auto px-4">{children}</main>
       </body>
     </html>
