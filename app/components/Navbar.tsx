@@ -43,7 +43,7 @@ export default async function Navbar() {
   // console.log(navItems);
 
   return (
-    <NavigationMenu className="w-full flex flex-col items-center max-w-4xl mx-auto py-2 px-4 border-b">
+    <NavigationMenu className="w-full flex flex-col items-center max-w-4xl mx-auto py-2 px-4 border-b bg-transparent">
       <NavigationMenuList className="flex flex-col md:flex-row justify-between w-full">
         {navItems.map((item, idx) => (
           <NavigationMenuItem key={idx}>

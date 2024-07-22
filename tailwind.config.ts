@@ -19,6 +19,12 @@ const config = {
     },
     extend: {
       colors: {
+        'ctid-green': "#879A77",
+        'ctid-taupe': "#554940",
+        'ctid-beige': "#c9ad93",
+        'ctid-pale-blue': "#d7e5f0",
+        'ctid-gray': "#c5c6c7",
+        'ctid-charcoal': "#73787c",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
