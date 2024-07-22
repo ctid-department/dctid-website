@@ -39,7 +39,7 @@ export default async function QuickLinkList({...props}) {
         <>
         {
           data.links?.map((link, index) => {
-            return <p key={index}><span>{link.title}</span> (<a className={linkCSS} href={link.link}>{link.link}</a>)</p>;
+            return <p key={index}><a className={linkCSS} href={link.link}>{link.title}</a></p>;
           })
         }
         </>
@@ -49,11 +49,11 @@ export default async function QuickLinkList({...props}) {
     return (
       <div className={quickLinkListCSS}>
         <h1 className="text-2xl font-bold">Quick Links</h1>
-        <p><span>University of the Philippines System</span> (<a className={linkCSS} href="https://up.edu.ph">https://up.edu.ph</a>)</p>
-        <p><span>University of the Philippines Diliman</span> (<a className={linkCSS} href="https://upd.edu.ph">https://upd.edu.ph</a>)</p>
-        <p><span>UPD College of Home Economics</span> (<a className={linkCSS} href="https://che.upd.edu.ph">https://che.upd.edu.ph</a>)</p>
-        <p><span>UPD Webmail</span></p>
-        <p><span>UPD Computerized Registration System</span></p>
+        <p><a className={linkCSS} href="https://up.edu.ph">University of the Philippines System</a></p>
+        <p><a className={linkCSS} href="https://upd.edu.ph">University of the Philippines Diliman</a></p>
+        <p><a className={linkCSS} href="https://che.upd.edu.ph">UPD College of Home Economics</a></p>
+        <p><a className={linkCSS} href="#">UPD Webmail</a></p>
+        <p><a className={linkCSS} href="https://crs.upd.edu.ph">UPD Computerized Registration System</a></p>
       </div>
     );
   }
