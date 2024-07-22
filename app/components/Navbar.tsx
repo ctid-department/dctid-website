@@ -12,6 +12,8 @@ import React from "react";
 import { client } from "../lib/sanity";
 import { navItem } from "../interface";
 
+export const revalidate = 60;
+
 async function getNavData() {
   const query = `
   *[_type == 'navigation'] | order(orderRank) {
