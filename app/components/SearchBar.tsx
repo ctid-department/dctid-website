@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, KeyboardEvent } from "react";
+import { useState, KeyboardEvent, useRef, useEffect } from "react";
 import { MdSearch } from "react-icons/md";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,13 @@ export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isSearchVisible && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isSearchVisible]);
 
   function handleSearch() {
     const params = new URLSearchParams(searchParams);
@@ -53,6 +60,7 @@ export default function SearchBar() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
+            ref={inputRef}
           />
           <button onClick={toggleSearch} className="" aria-label="Search">
             <MdSearch className="h-6 w-6" />
