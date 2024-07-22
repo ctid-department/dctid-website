@@ -11,6 +11,7 @@ import {
 import React from "react";
 import { client } from "../lib/sanity";
 import { navItem } from "../interface";
+import { cn } from "@/lib/utils";
 
 export const revalidate = 60;
 
@@ -48,9 +49,9 @@ export default async function Navbar() {
     <NavigationMenu className="max-w-6xl w-full flex flex-col items-center mx-auto py-2 px-4 bg-transparent">
       <NavigationMenuList className="flex flex-col md:flex-row justify-between w-full">
         {navItems.map((item, idx) => (
-          <NavigationMenuItem key={idx}>
+          <NavigationMenuItem key={idx} className="w-[100vw] sm:w-auto">
             {item.type === "link" ? (
-              <Link href={item.link!.link} legacyBehavior passHref>
+              <Link href={item.link!.link} legacyBehavior passHref >
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   {item.link!.title}
                 </NavigationMenuLink>

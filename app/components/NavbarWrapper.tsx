@@ -1,7 +1,8 @@
 'use client';
 
-import burger from "../images/burger.png";
-import {useState, useEffect, useRef} from 'react';
+import {useState} from 'react';
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils"
 
 export default function NavbarWrapper({...props}){
   
@@ -11,22 +12,20 @@ export default function NavbarWrapper({...props}){
     setNavbarHidden(!navbarHidden);
   }
 
-  useEffect(()=>{
-    console.log(burger);
-  }, [navbarHidden]);
-
-  const burgerCSS = `float-start rounded-full block bg-center bg-contain sm:hidden w-[70px] h-[70px] my-[-35px] trasition-all duration-75 ${navbarHidden ? "" : "rotate-180"}`
+  const burgerCSS = cn(
+    "w-full bg-ctid-green block bg-center bg-contain sm:hidden text-white",
+    "h-[10vh]"
+  )
 
   return (
-    <div>
-        <button
-        style={{
-          backgroundImage: `url("${burger.src}")`
-        }}
-      className={burgerCSS} onClick={handleClick}></button>
-      <div className={navbarHidden ? "hidden sm:block" : "block"}>
+    <div className="">
+      <div className={navbarHidden ? "hidden sm:block bg-ctid-green sm:bg-transparent text-white sm:text-black" : "block bg-ctid-green text-white"}>
         {props.children}
       </div>
+      <button className={burgerCSS} onClick={handleClick}>
+        {navbarHidden ? "Navigation" : ""}
+        <ChevronDown className={`m-auto text-white ${navbarHidden ? "" : "rotate-180"}`}/>
+      </button>
     </div>
   )
 }
