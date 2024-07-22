@@ -19,6 +19,7 @@ export default defineConfig({
           .title('Content')
           .items([
             S.documentTypeListItem('article').title('News'),
+            S.documentTypeListItem('event').title('Events'),
             orderableDocumentListDeskItem({
               title: 'Navigation',
               type: 'navigation',

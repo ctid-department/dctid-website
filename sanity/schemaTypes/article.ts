@@ -51,6 +51,7 @@ export default defineType({
         {type: 'image-module'},
         {type: 'hero.split'},
         {type: 'articles-list'},
+        {type: 'events-list'},
       ],
     },
   ],

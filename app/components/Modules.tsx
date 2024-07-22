@@ -1,4 +1,5 @@
 import ArticlesList from "./modules/ArticlesList";
+import EventsList from "./modules/EventsList";
 import HeroSplit from "./modules/HeroSplit";
 import ImageModule from "./modules/ImageModule";
 import RichTextModule from "./modules/RichTextModule";
@@ -20,6 +21,8 @@ export default function Modules({
             return <RichTextModule {...module} key={module._key} />;
           case "articles-list":
             return <ArticlesList {...module} key={module._key} />;
+          case "events-list":
+            return <EventsList {...module} key={module._key} />;
           case "image-module":
             return <ImageModule {...module} key={module._key} />;
           default:
