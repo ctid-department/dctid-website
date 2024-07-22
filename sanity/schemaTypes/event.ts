@@ -1,30 +1,40 @@
-import {defineField, defineType} from 'sanity'
-import {MdOutlineArticle} from 'react-icons/md'
+import {MdEvent} from 'react-icons/md'
+import {defineType} from 'sanity'
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-PH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
 
 export default defineType({
-  name: 'page',
-  title: 'Page',
+  name: 'event',
   type: 'document',
-  icon: MdOutlineArticle,
+  title: 'Event',
+  icon: MdEvent,
   fields: [
     {
       name: 'title',
       type: 'string',
-      title: 'Title of page',
+      title: 'Title of event',
       validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug of page',
+      title: 'Slug of event',
       options: {
         source: 'title',
       },
     },
     {
-      name: 'heroImage',
-      type: 'image',
-      title: 'Hero Image',
+      name: 'date',
+      type: 'date',
+      title: 'Date of event',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'modules',
@@ -42,13 +52,11 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      slug: 'slug',
-      media: 'heroImage',
+      date: 'date',
     },
-    prepare: ({title, slug, media}) => ({
+    prepare: ({title, date}) => ({
       title,
-      subtitle: slug ? '/' + slug.current : '/',
-      media,
+      subtitle: formatDate(date),
     }),
   },
 })
