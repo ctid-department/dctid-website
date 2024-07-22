@@ -49,7 +49,7 @@ export default defineType({
     },
     prepare: ({title, slug, media}) => ({
       title,
-      subtitle: '/article/' + slug.current,
+      subtitle: '/news/' + slug.current,
       media: media,
     }),
   },

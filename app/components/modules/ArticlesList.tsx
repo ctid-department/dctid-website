@@ -43,7 +43,7 @@ const ArticlesList: React.FC<Props> = async ({ display }) => {
       <div className="mx-auto max-w-3xl grid grid-cols-1 md:grid-cols-2 my-16 gap-8">
         {data.map((article, idx) => (
           <Card key={idx} className="shadow rounded">
-            <Link href={`/article/${article.currentSlug}`}>
+            <Link href={`/news/${article.currentSlug}`}>
               <Image
                 src={urlFor(article.heroImage).url()}
                 alt="image"
@@ -53,7 +53,7 @@ const ArticlesList: React.FC<Props> = async ({ display }) => {
               />
             </Link>
             <CardContent className="p-4">
-              <Link href={`/article/${article.currentSlug}`}>
+              <Link href={`/news/${article.currentSlug}`}>
                 <h3 className="text-md line-clamp-2 font-semibold">
                   {article.title}
                 </h3>
