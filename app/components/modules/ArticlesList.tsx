@@ -4,6 +4,7 @@ import { simpleArticleCard } from "@/app/interface";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { formatDate } from "@/app/lib/utils";
 
 interface Props {
   display: boolean;
@@ -27,18 +28,9 @@ async function getArticleData() {
   return data;
 }
 
-function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-PH", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
 const ArticlesList: React.FC<Props> = async ({ display }) => {
   const data: simpleArticleCard[] = await getArticleData();
-  console.log(data);
+  // console.log(data);
 
   return (
     <section className="my-8">

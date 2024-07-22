@@ -1,6 +1,15 @@
 import {PiArticleMedium} from 'react-icons/pi'
 import {defineType} from 'sanity'
 
+function formatDate(dateString: string) {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-PH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+
 export default defineType({
   name: 'article',
   type: 'document',
@@ -34,28 +43,26 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'content',
+      name: 'modules',
       type: 'array',
-      title: 'Content',
+      title: 'Modules',
       of: [
-        {
-          type: 'block',
-        },
-        {
-          type: 'image',
-        },
+        {type: 'richtext-module'},
+        {type: 'image-module'},
+        {type: 'hero.split'},
+        {type: 'articles-list'},
       ],
     },
   ],
   preview: {
     select: {
       title: 'title',
-      slug: 'slug',
+      date: 'date',
       media: 'heroImage',
     },
-    prepare: ({title, slug, media}) => ({
+    prepare: ({title, date, media}) => ({
       title,
-      subtitle: '/news/' + slug.current,
+      subtitle: formatDate(date),
       media: media,
     }),
   },

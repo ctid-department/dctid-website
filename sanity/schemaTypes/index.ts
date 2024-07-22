@@ -5,6 +5,7 @@ import page from './page'
 import richtextModule from './modules/richtext-module'
 import heroSplit from './modules/hero.split'
 import articlesList from './modules/articles-list'
+import imageModule from './modules/image-module'
 
 export const schemaTypes = [
   article,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   heroSplit,
   richtextModule,
   articlesList,
+  imageModule,
 ]

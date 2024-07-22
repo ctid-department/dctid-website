@@ -9,8 +9,9 @@ export interface simpleArticleCard {
 export interface fullArticle {
   currentSlug: string;
   title: string;
-  content: any;
   heroImage: any;
+  modules: any;
+  date: string;
 }
 
 export interface fullPage {
