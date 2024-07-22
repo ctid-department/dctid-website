@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/navigation-menu";
 import React from "react";
 import { client } from "../lib/sanity";
-import { navItem } from "../lib/interface";
+import { navItem } from "../interface";
+
+export const revalidate = 60;
 
 async function getNavData() {
   const query = `
@@ -43,7 +45,7 @@ export default async function Navbar() {
   // console.log(navItems);
 
   return (
-    <NavigationMenu className="w-full flex flex-col items-center max-w-4xl mx-auto py-2 px-4 border-b bg-transparent">
+    <NavigationMenu className="max-w-6xl w-full flex flex-col items-center mx-auto py-2 px-4 bg-transparent">
       <NavigationMenuList className="flex flex-col md:flex-row justify-between w-full">
         {navItems.map((item, idx) => (
           <NavigationMenuItem key={idx}>

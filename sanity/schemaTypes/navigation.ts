@@ -2,8 +2,6 @@ import {defineField, defineType} from 'sanity'
 import {count} from '../utils'
 import {GrNavigate} from 'react-icons/gr'
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
-import {fetchFromQuery, getObjectFromRef} from '../../app/lib/sanity.js'
-import {link} from 'fs'
 
 export default defineType({
   name: 'navigation',

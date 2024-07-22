@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {VscSymbolKeyword} from 'react-icons/vsc'
+import {getBlockText} from '../../utils'
 
 export default defineType({
   name: 'richtext-module',
@@ -30,6 +31,7 @@ export default defineType({
     },
     prepare: ({content}) => ({
       title: 'Richtext module',
+      subtitle: getBlockText(content),
     }),
   },
 })
