@@ -1,5 +1,4 @@
 import { PortableText } from "@portabletext/react";
-import { cn } from "@/lib/utils";
 import { urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 

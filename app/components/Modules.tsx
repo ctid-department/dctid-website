@@ -1,5 +1,6 @@
 import ArticlesList from "./modules/ArticlesList";
 import HeroSplit from "./modules/HeroSplit";
+import ImageModule from "./modules/ImageModule";
 import RichTextModule from "./modules/RichTextModule";
 
 export default function Modules({
@@ -19,6 +20,8 @@ export default function Modules({
             return <RichTextModule {...module} key={module._key} />;
           case "articles-list":
             return <ArticlesList {...module} key={module._key} />;
+          case "image-module":
+            return <ImageModule {...module} key={module._key} />;
           default:
             return <div data-type={module._type} key={module._key} />;
         }

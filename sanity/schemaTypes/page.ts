@@ -30,7 +30,12 @@ export default defineType({
       name: 'modules',
       type: 'array',
       title: 'Modules',
-      of: [{type: 'richtext-module'}, {type: 'hero.split'}, {type: 'articles-list'}],
+      of: [
+        {type: 'richtext-module'},
+        {type: 'image-module'},
+        {type: 'hero.split'},
+        {type: 'articles-list'},
+      ],
     },
   ],
   preview: {
