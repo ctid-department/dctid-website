@@ -3,6 +3,7 @@ export interface simpleArticleCard {
   currentSlug: string;
   heroImage: any;
   creationDate: string;
+  date: string;
 }
 
 export interface fullArticle {

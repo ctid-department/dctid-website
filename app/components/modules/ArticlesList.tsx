@@ -1,6 +1,6 @@
 import React from "react";
 import { client, urlFor } from "@/app/lib/sanity";
-import { simpleArticleCard } from "@/app/lib/interface";
+import { simpleArticleCard } from "@/app/interface";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,11 +13,12 @@ export const revalidate = 30;
 
 async function getArticleData() {
   const query = `
-    *[_type == 'article'] | order(_createdAt desc) {
+    *[_type == 'article'] | order(date desc) {
     title,
       title,
       "currentSlug": slug.current,
       heroImage,
+      date,
       "creationDate": _createdAt
     }`;
 
@@ -37,6 +38,7 @@ function formatDate(dateString: string) {
 
 const ArticlesList: React.FC<Props> = async ({ display }) => {
   const data: simpleArticleCard[] = await getArticleData();
+  console.log(data);
 
   return (
     <section className="my-8">
@@ -59,7 +61,9 @@ const ArticlesList: React.FC<Props> = async ({ display }) => {
                 </h3>
               </Link>
               <p className="line-clamp-3 text-xs mt-1 text-gray-600">
-                {formatDate(article.creationDate)}
+                {article.date
+                  ? formatDate(article.date)
+                  : formatDate(article.creationDate)}
               </p>
             </CardContent>
           </Card>

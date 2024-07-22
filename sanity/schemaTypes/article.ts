@@ -16,10 +16,16 @@ export default defineType({
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug of your article',
+      title: 'Slug of article',
       options: {
         source: 'title',
       },
+    },
+    {
+      name: 'date',
+      type: 'date',
+      title: 'Date of article',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'heroImage',

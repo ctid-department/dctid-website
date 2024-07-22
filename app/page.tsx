@@ -1,4 +1,4 @@
-import { fullPage } from "./lib/interface";
+import { fullPage } from "./interface";
 import { client } from "./lib/sanity";
 
 import Modules from "./components/Modules";

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import React from "react";
 import { client } from "../lib/sanity";
-import { navItem } from "../lib/interface";
+import { navItem } from "../interface";
 
 async function getNavData() {
   const query = `
