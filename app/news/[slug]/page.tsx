@@ -1,8 +1,7 @@
-import ImageComponent from "@/app/components/ImageComponent";
-import Hero from "@/app/components/Hero";
-import { fullArticle } from "@/app/lib/interface";
+import Modules from "@/app/components/Modules";
+import { fullArticle } from "@/app/interface";
 import { client, urlFor } from "@/app/lib/sanity";
-import { PortableText } from "next-sanity";
+import { formatDate } from "@/app/lib/utils";
 import Image from "next/image";
 
 export const revalidate = 30;
@@ -12,8 +11,9 @@ async function getData(slug: string) {
   *[_type == 'article' && slug.current == '${slug}'] {
     "currentSlug": slug.current,
     title,
-    content,
-    titleImage
+    modules,
+    heroImage,
+    date
   }[0]`;
 
   const data = await client.fetch(query);
@@ -27,7 +27,7 @@ export default async function Article({
 }) {
   const data: fullArticle = await getData(params.slug);
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="my-4">
       <h1>
@@ -37,26 +37,22 @@ export default async function Article({
         <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
           {data.title}
         </span>
+        <span className="mt-2 block mx-auto text-center">
+          {formatDate(data.date)}
+        </span>
       </h1>
 
       <Image
-        src={urlFor(data.titleImage).url()}
+        src={urlFor(data.heroImage).url()}
         width={800}
         height={800}
-        alt="Title Image"
+        alt="Hero Image"
         priority
-        className="rounded-lg mt-8 border w-full"
+        className="rounded-lg mt-4 border w-full"
       />
 
-      <div className="mx-auto mt-16 prose prose-blue prose-md">
-        <PortableText
-          value={data.content}
-          components={{
-            types: {
-              image: ImageComponent,
-            },
-          }}
-        />
+      <div className="max-w-3xl mx-auto">
+        <Modules modules={data?.modules} />
       </div>
     </div>
   );

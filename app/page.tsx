@@ -1,8 +1,6 @@
-import { fullPage } from "./lib/interface";
-import { client, urlFor } from "./lib/sanity";
+import { fullPage } from "./interface";
+import { client } from "./lib/sanity";
 
-import { PortableText } from "next-sanity";
-import ImageComponent from "./components/ImageComponent";
 import Modules from "./components/Modules";
 
 export const revalidate = 30;
@@ -22,7 +20,7 @@ async function getPageData() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const data: fullPage = await getPageData();
 
-  console.log(data);
+  // console.log(data);
 
   if (!data) {
     return (
@@ -34,7 +32,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="my-4">
+    <div className="my-4 mt-8">
       <h1>
         <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
           {data.title}

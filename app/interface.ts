@@ -1,15 +1,17 @@
 export interface simpleArticleCard {
   title: string;
   currentSlug: string;
-  titleImage: any;
+  heroImage: any;
   creationDate: string;
+  date: string;
 }
 
 export interface fullArticle {
   currentSlug: string;
   title: string;
-  content: any;
-  titleImage: any;
+  heroImage: any;
+  modules: any;
+  date: string;
 }
 
 export interface fullPage {
@@ -25,5 +27,7 @@ export interface linkItem {
 
 export interface navItem {
   title: string;
-  items: linkItem[];
+  type: "dropdown" | "link";
+  items?: linkItem[];
+  link?: linkItem;
 }

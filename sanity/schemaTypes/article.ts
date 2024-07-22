@@ -1,6 +1,14 @@
-import {RiArticleLine} from 'react-icons/ri'
 import {PiArticleMedium} from 'react-icons/pi'
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-PH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
 
 export default defineType({
   name: 'article',
@@ -12,43 +20,50 @@ export default defineType({
       name: 'title',
       type: 'string',
       title: 'Title of article',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug of your article',
+      title: 'Slug of article',
       options: {
         source: 'title',
       },
     },
     {
-      name: 'titleImage',
-      type: 'image',
-      title: 'Title Image',
+      name: 'date',
+      type: 'date',
+      title: 'Date of article',
+      validation: (Rule) => Rule.required(),
     },
     {
-      name: 'content',
+      name: 'heroImage',
+      type: 'image',
+      title: 'Hero Image',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'modules',
       type: 'array',
-      title: 'Content',
+      title: 'Modules',
       of: [
-        {
-          type: 'block',
-        },
-        {
-          type: 'image',
-        },
+        {type: 'richtext-module'},
+        {type: 'image-module'},
+        {type: 'hero.split'},
+        {type: 'articles-list'},
+        {type: 'events-list'},
       ],
     },
   ],
   preview: {
     select: {
       title: 'title',
-      slug: 'slug',
-      media: 'titleImage',
+      date: 'date',
+      media: 'heroImage',
     },
-    prepare: ({title, slug, media}) => ({
+    prepare: ({title, date, media}) => ({
       title,
-      subtitle: '/article/' + slug.current,
+      subtitle: formatDate(date),
       media: media,
     }),
   },
