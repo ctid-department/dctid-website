@@ -2,7 +2,16 @@ import Modules from "@/app/components/Modules";
 import { fullArticle } from "@/app/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { formatDate } from "@/app/lib/utils";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import Image from "next/image";
+import Link from "next/link";
 
 export const revalidate = 30;
 
@@ -31,9 +40,27 @@ export default async function Article({
   return (
     <div className="my-4">
       <h1>
-        <span className="block text-base text-center text-primary font-semibold tracking-wide">
-          News {">"} {data.title}
-        </span>
+        <Breadcrumb>
+          <BreadcrumbList className="w-max text-base font-semibold mx-auto">
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>{" "}
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/news">News</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="font-medium">
+                {data.title}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
           {data.title}
         </span>
