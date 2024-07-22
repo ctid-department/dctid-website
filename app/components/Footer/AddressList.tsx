@@ -41,14 +41,16 @@ export default async function AddressList({...props}) {
 
 
   const addressListCSS = cn(
-    "w-full h-full p-1 p-[5%]",
+    "",
     props.className
   )
+
+  const titleCSS = "text-xl sm:text-2xl font-bold border-b-2 pb-2 mb-2"
 
   if(data){
     return (
       <div className={addressListCSS}>
-        <h1 className="text-2xl font-bold">{props.title ?? "Address"}</h1>
+        <h1 className={titleCSS}>{props.title ?? "Address"}</h1>
         <>
         {
           data.addresses?.map((address, index) => {
@@ -72,7 +74,7 @@ export default async function AddressList({...props}) {
     }else{
       return (
         <div className={addressListCSS}>
-        <h1 className="text-2xl font-bold">{props.title ?? "Address"}</h1>
+        <h1 className={titleCSS}>{props.title ?? "Address"}</h1>
           <p>
             <span>College of Home Economics Museum Building</span><br />
             <span>A. Ma. Regidor Street,</span><br />
