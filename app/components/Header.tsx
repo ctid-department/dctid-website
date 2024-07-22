@@ -4,7 +4,7 @@ import upseal from "../images/UP-seal.png";
 import ctidlogo from "../images/CTID-logo.png";
 import React from "react";
 import { FaFacebook } from "react-icons/fa";
-import { MdSearch } from "react-icons/md";
+import SearchBar from "./SearchBar";
 
 export default async function Header() {
   return (
@@ -29,7 +29,7 @@ export default async function Header() {
           </div>
         </div>
         <div className="flex items-center gap-5">
-          <MdSearch size={24} className="cursor-pointer" />
+          <SearchBar />
           <Link href="https://www.facebook.com/UPCTID/">
             <FaFacebook size={24} className="cursor-pointer" />
           </Link>
