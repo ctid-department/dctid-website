@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 export default function NavList({...props}){
 
   const navListCSS = cn(
-    "",
+    "cursor-pointer",
     props.className
   )
 
