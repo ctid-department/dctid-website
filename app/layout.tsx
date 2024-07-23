@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import OldNavbar from "./components/OldNavbar";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -25,9 +26,15 @@ export default function RootLayout({
       >
         <Header />
         <NavbarWrapper>
+          {
+            // <OldNavbar />
+          }
+          <OldNavbar />
           <Navbar />
         </NavbarWrapper>
-        <main className="max-w-4xl mx-auto px-4">{children}</main>
+        <main className="max-w-4xl mx-auto px-4">
+          {children}
+        </main>
       </body>
     </html>
   );

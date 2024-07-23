@@ -41,7 +41,7 @@ async function getNavData() {
   return data || null;
 }
 
-export default async function Navbar() {
+export default async function OldNavbar() {
   const navItems: navItem[] = await getNavData();
 
   // console.log(navItems);
