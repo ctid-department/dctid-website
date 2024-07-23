@@ -27,6 +27,7 @@ export default defineType({
         list: ['left', 'right', 'center', 'justify'],
       },
       initialValue: 'left',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
