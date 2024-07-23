@@ -45,26 +45,33 @@ export default async function Navbar() {
   // console.log(navItems);
 
   return (
-    <NavigationMenu className="max-w-6xl w-full flex-grow-0 flex flex-col items-center mx-auto py-2 px-4 bg-transparent">
-      <NavigationMenuList className="flex flex-col md:flex-row justify-between w-full">
+    <NavigationMenu className="max-w-6xl w-full flex-grow-0 flex flex-col items-stretch md:items-center mx-auto py-2 px-4 bg-transparent">
+      <NavigationMenuList className="flex flex-col md:flex-row justify-between items-stretch">
         {navItems.map((item, idx) => (
           <NavigationMenuItem key={idx}>
             {item.type === "link" ? (
               <Link href={item.link!.link} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={navigationMenuTriggerStyle() + " min-w-full"}
+                >
                   {item.link!.title}
                 </NavigationMenuLink>
               </Link>
             ) : (
               <>
-                <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="min-w-full">
+                  {item.title}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent className="z-10">
-                  <ul className="md:p-6 md:w-[400px]">
+                  <ul className="">
                     {item.items!.map((linkItem, linkIdx) => (
-                      <li key={linkIdx}>
+                      <li key={linkIdx} className="">
                         <Link href={linkItem.link} legacyBehavior passHref>
                           <NavigationMenuLink
-                            className={navigationMenuTriggerStyle()}
+                            className={
+                              navigationMenuTriggerStyle() +
+                              " min-w-full !justify-start !p-4"
+                            }
                           >
                             {linkItem.title}
                           </NavigationMenuLink>

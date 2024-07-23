@@ -34,7 +34,7 @@ export default async function Event({ params }: { params: { slug: string } }) {
     <div className="my-4">
       <h1>
         <Breadcrumb>
-          <BreadcrumbList className="w-max text-base font-semibold mx-auto">
+          <BreadcrumbList className="md:w-max w-full overflow-x-auto text-sm md:text-base font-semibold justify-center">
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/">Home</Link>
@@ -48,7 +48,7 @@ export default async function Event({ params }: { params: { slug: string } }) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage className="font-medium">
+              <BreadcrumbPage className="font-medium text-center">
                 {data.title}
               </BreadcrumbPage>
             </BreadcrumbItem>

@@ -40,17 +40,17 @@ const EventsList: React.FC<Props> = async ({ display }) => {
 
   return (
     <section className="my-8">
-      <div className="mx-auto max-w-3xl flex flex-col my-8">
+      <div className="mx-auto max-w-3xl flex flex-col my-8 px-2">
         {data.map((event: any, idx: number) => (
           <div key={idx} className="flex gap-4 items-stretch">
             <div className="flex items-center w-28 flex-shrink-0">
-              <div className="my-auto w-full text-center">
+              <div className="my-auto w-full text-center text-sm md:text-base">
                 {formatDate(event.date)}
               </div>
             </div>
             <Separator orientation="vertical" />
             <Link
-              className="items-center flex font-medium text-lg text-ctid-taupe my-4 hover:underline flex-grow"
+              className="items-center flex font-medium md:text-lg text-ctid-taupe my-4 hover:underline flex-grow"
               href={`/events/${event.currentSlug}`}
             >
               {event.title}

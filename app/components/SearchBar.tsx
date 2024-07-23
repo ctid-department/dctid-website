@@ -50,12 +50,12 @@ export default function SearchBar() {
     <div className="relative flex flex-1 flex-shrink-0 items-center">
       {!isSearchVisible ? (
         <button onClick={toggleSearch} className="" aria-label="Open search">
-          <MdSearch className="h-6 w-6" />
+          <MdSearch className="h-6 w-6 hover:brightness-90" />
         </button>
       ) : (
-        <div className="w-full flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <Input
-            className="text-black focus:!ring-ctid-green"
+            className="text-black focus:!ring-ctid-green py-0 h-8"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -63,7 +63,7 @@ export default function SearchBar() {
             ref={inputRef}
           />
           <button onClick={toggleSearch} className="" aria-label="Search">
-            <MdSearch className="h-6 w-6" />
+            <MdSearch className="h-6 w-6 hover:brightness-90" />
           </button>
         </div>
       )}
