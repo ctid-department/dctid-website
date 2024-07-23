@@ -21,42 +21,61 @@ async function getPageData(slug: string) {
   return data || null;
 }
 
-export default async function QuickLinkList({...props}) {
+export default async function QuickLinkList({ ...props }) {
   const data: quickLinks = await getPageData(props.slug);
 
-  const quickLinkListCSS = cn(
-    "",
-    props.className
-  )
+  const quickLinkListCSS = cn("", props.className);
 
-  const linkCSS = "hover:underline"
-  const titleCSS = "text-xl sm:text-2xl font-bold border-b-2 pb-2 mb-2"
-  
-  if(data){
-    // https://stackoverflow.com/questions/39549424/how-to-create-unique-keys-for-react-elements
+  const linkCSS = "hover:underline";
+  const titleCSS = "text-xl font-bold border-b-2 pb-2 mb-2";
+
+  if (data) {
     return (
       <div className={quickLinkListCSS}>
         <h1 className={titleCSS}>Quick Links</h1>
         <>
-        {
-          data.links?.map((link, index) => {
-            return <p key={index}><a className={linkCSS} href={link.link}>{link.title}</a></p>;
-          })
-        }
+          {data.links?.map((link, index) => {
+            return (
+              <p key={index}>
+                <a className={linkCSS} href={link.link}>
+                  {link.title}
+                </a>
+              </p>
+            );
+          })}
         </>
       </div>
     );
-  }else{
+  } else {
     return (
       <div className={quickLinkListCSS}>
         <h1 className={titleCSS}>Quick Links</h1>
-        <p><a className={linkCSS} href="https://up.edu.ph">University of the Philippines System</a></p>
-        <p><a className={linkCSS} href="https://upd.edu.ph">University of the Philippines Diliman</a></p>
-        <p><a className={linkCSS} href="https://che.upd.edu.ph">UPD College of Home Economics</a></p>
-        <p><a className={linkCSS} href="#">UPD Webmail</a></p>
-        <p><a className={linkCSS} href="https://crs.upd.edu.ph">UPD Computerized Registration System</a></p>
+        <p>
+          <a className={linkCSS} href="https://up.edu.ph">
+            University of the Philippines System
+          </a>
+        </p>
+        <p>
+          <a className={linkCSS} href="https://upd.edu.ph">
+            University of the Philippines Diliman
+          </a>
+        </p>
+        <p>
+          <a className={linkCSS} href="https://che.upd.edu.ph">
+            UPD College of Home Economics
+          </a>
+        </p>
+        <p>
+          <a className={linkCSS} href="https://mail.upd.edu.ph/">
+            UPD Webmail
+          </a>
+        </p>
+        <p>
+          <a className={linkCSS} href="https://crs.upd.edu.ph">
+            UPD Computerized Registration System
+          </a>
+        </p>
       </div>
     );
   }
-
 }

@@ -41,11 +41,11 @@ export default async function Article({
     <div className="my-4">
       <h1>
         <Breadcrumb>
-          <BreadcrumbList className="w-max text-base font-semibold mx-auto">
+          <BreadcrumbList className="md:w-max w-full overflow-x-auto text-sm md:text-base font-semibold justify-center">
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/">Home</Link>
-              </BreadcrumbLink>{" "}
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -55,7 +55,7 @@ export default async function Article({
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage className="font-medium">
+              <BreadcrumbPage className="font-medium text-center">
                 {data.title}
               </BreadcrumbPage>
             </BreadcrumbItem>
