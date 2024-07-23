@@ -1,7 +1,8 @@
 import { fullPage } from "./interface";
-import { client } from "./lib/sanity";
+import { client, urlFor } from "./lib/sanity";
 import Modules from "./components/Modules";
 import SearchResults from "./components/SearchResults";
+import Image from "next/image";
 
 export const revalidate = 30;
 
@@ -10,7 +11,8 @@ async function getPageData() {
   *[_type == 'page' && slug == null] {
     "currentSlug": slug.current,
     title,
-    modules[]
+    modules[],
+    heroImage
   }[0]`;
 
   const data = await client.fetch(query);
@@ -29,7 +31,7 @@ async function performSearch(searchQuery: string) {
       _type,
       title,
       "currentSlug": slug.current,
-      image
+      heroImage
     }
   `);
   return searchResults;
@@ -61,13 +63,28 @@ export default async function Page({
   }
 
   return (
-    <div className="my-4 mt-8">
-      <h1>
-        <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
-          {data.title}
-        </span>
-      </h1>
-      <Modules modules={data?.modules} />
-    </div>
+    <>
+      {data.heroImage ? (
+        <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh]">
+          <Image
+            src={urlFor(data.heroImage).url()}
+            alt="Hero Image"
+            priority
+            fill
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className="my-4 mt-8">
+        <h1>
+          <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+            {data.title}
+          </span>
+        </h1>
+        <Modules modules={data?.modules} />
+      </div>
+    </>
   );
 }
