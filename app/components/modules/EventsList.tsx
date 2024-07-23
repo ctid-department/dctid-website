@@ -1,11 +1,12 @@
 import React from "react";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
-// import { formatDate } from "@/app/lib/utils";
 import { Separator } from "@/components/ui/separator";
 
 interface Props {
-  display: boolean;
+  isCustom: boolean;
+  maxItems: number;
+  items?: any;
 }
 
 export const revalidate = 30;
@@ -19,9 +20,9 @@ export function formatDate(dateString: string) {
   });
 }
 
-async function getEventData() {
+async function getEventData(maxItems: number) {
   const query = `
-    *[_type == 'event'] | order(date desc) {
+    *[_type == 'event'][0..${maxItems - 1}] | order(date desc) {
     title,
       title,
       "currentSlug": slug.current,
@@ -34,8 +35,29 @@ async function getEventData() {
   return data;
 }
 
-const EventsList: React.FC<Props> = async ({ display }) => {
-  const data = await getEventData();
+async function getFromRefs(refs: any) {
+  const refIds = refs.map((ref: any) => ref._ref);
+
+  const query = `
+    *[_type == "event" && _id in $refIds] {
+      title,
+      "currentSlug": slug.current,
+      date
+    }
+  `;
+
+  const data = await client.fetch(query, { refIds });
+
+  return data;
+}
+
+const EventsList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
+  let data = [];
+  if (isCustom) {
+    data = await getFromRefs(items);
+  } else {
+    data = await getEventData(maxItems ?? 100);
+  }
   // console.log(data);
 
   return (

@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 import {VscSymbolKeyword} from 'react-icons/vsc'
 import {getBlockText} from '../../utils'
 
@@ -7,10 +7,6 @@ export default defineType({
   title: 'Richtext module',
   icon: VscSymbolKeyword,
   type: 'object',
-  groups: [
-    {name: 'content', title: 'Content', default: true},
-    {name: 'options', title: 'Options'},
-  ],
   fields: [
     defineField({
       name: 'content',
@@ -23,6 +19,15 @@ export default defineType({
           type: 'image',
         },
       ],
+    }),
+    defineField({
+      name: 'alignment',
+      type: 'string',
+      options: {
+        list: ['left', 'right', 'center', 'justify'],
+      },
+      initialValue: 'left',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

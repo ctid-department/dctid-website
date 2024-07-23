@@ -33,7 +33,8 @@ async function getNavData() {
         external
       )
     }
-  }`;
+  }
+  `;
 
   const data = await client.fetch(query);
   return data || null;
