@@ -22,8 +22,7 @@ export default function NavCore({...props}){
     <nav className="md:flex justify-center w-full">
       {
         navItems.map((item: any, idx: any) => (
-          <>{
-            item.type === "link" ? (
+          item.type === "link" ? (
             <NavLink key={idx} className={navItemCSS} href={item.link!.link} title={item.link!.title}/>
           ) : (
             <NavList key={idx} showRef={[shownList, setShownList]} showKey={idx} className={navItemCSS} title={item.title} popout>
@@ -36,7 +35,6 @@ export default function NavCore({...props}){
               </div>
             </NavList>
           )
-          }</>
         ))
       }
     </nav>
