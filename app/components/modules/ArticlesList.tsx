@@ -7,30 +7,60 @@ import Link from "next/link";
 import { formatDate } from "@/app/lib/utils";
 
 interface Props {
-  display: boolean;
+  isCustom: boolean;
+  showButton: boolean;
+  maxItems: number;
+  items?: any;
 }
 
 export const revalidate = 30;
 
-async function getArticleData() {
+async function getArticleData(maxItems: number) {
   const query = `
-    *[_type == 'article'] | order(date desc) {
-    title,
+    *[_type == 'article'][0..${maxItems - 1}] | order(date desc) {
       title,
       "currentSlug": slug.current,
       heroImage,
       date,
       "creationDate": _createdAt
-    }`;
+    }
+  `;
 
   const data = await client.fetch(query);
 
   return data;
 }
 
-const ArticlesList: React.FC<Props> = async ({ display }) => {
-  const data: simpleArticleCard[] = await getArticleData();
-  // console.log(data);
+async function getFromRefs(refs: any) {
+  const refIds = refs.map((ref: any) => ref._ref);
+
+  const query = `
+    *[_type == "article" && _id in $refIds] {
+      title,
+      "currentSlug": slug.current,
+      heroImage,
+      date,
+      "creationDate": _createdAt
+    }
+  `;
+
+  const data = await client.fetch(query, { refIds });
+
+  return data;
+}
+
+const ArticlesList: React.FC<Props> = async ({
+  isCustom,
+  showButton,
+  maxItems,
+  items,
+}) => {
+  let data: simpleArticleCard[] = [];
+  if (isCustom) {
+    data = await getFromRefs(items);
+  } else {
+    data = await getArticleData(maxItems ?? 100);
+  }
 
   return (
     <section className="my-8">
@@ -60,6 +90,19 @@ const ArticlesList: React.FC<Props> = async ({ display }) => {
             </CardContent>
           </Card>
         ))}
+        {showButton ? (
+          <Card className="shadow rounded my-auto h-max">
+            <CardContent className="p-4">
+              <Link href="/news">
+                <h3 className="text-md line-clamp-2 font-semibold text-center">
+                  View all
+                </h3>
+              </Link>
+            </CardContent>
+          </Card>
+        ) : (
+          <></>
+        )}
       </div>
     </section>
   );

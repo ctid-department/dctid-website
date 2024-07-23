@@ -1,6 +1,5 @@
 import {defineField, defineType} from 'sanity'
 import {MdOutlineImage} from 'react-icons/md'
-import {getBlockText} from '../../utils'
 
 export default defineType({
   name: 'image-module',

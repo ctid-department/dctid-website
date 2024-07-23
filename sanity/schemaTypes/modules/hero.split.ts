@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {TfiLayoutMediaLeft} from 'react-icons/tfi'
+import {getBlockText} from '../../utils'
 
 export default defineType({
   name: 'hero.split',
@@ -7,6 +8,15 @@ export default defineType({
   icon: TfiLayoutMediaLeft,
   type: 'object',
   fields: [
+    defineField({
+      name: 'style',
+      type: 'string',
+      options: {
+        layout: 'radio',
+        list: ['1', '2'],
+      },
+      initialValue: '1',
+    }),
     defineField({
       name: 'image',
       type: 'image',
@@ -23,6 +33,16 @@ export default defineType({
           },
           initialValue: 'left',
         }),
+        defineField({
+          name: 'height',
+          type: 'number',
+          initialValue: 400,
+        }),
+        defineField({
+          name: 'width',
+          type: 'number',
+          initialValue: 400,
+        }),
       ],
       validation: (Rule) => Rule.required(),
     }),
@@ -36,9 +56,11 @@ export default defineType({
   preview: {
     select: {
       media: 'image.asset',
+      content: 'content',
     },
-    prepare: ({media}) => ({
+    prepare: ({media, content}) => ({
       title: 'Hero (split)',
+      subtitle: getBlockText(content),
       media,
     }),
   },

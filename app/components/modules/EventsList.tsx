@@ -1,11 +1,12 @@
 import React from "react";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
-// import { formatDate } from "@/app/lib/utils";
 import { Separator } from "@/components/ui/separator";
 
 interface Props {
-  display: boolean;
+  isCustom: boolean;
+  maxItems: number;
+  items?: any;
 }
 
 export const revalidate = 30;
@@ -19,9 +20,9 @@ export function formatDate(dateString: string) {
   });
 }
 
-async function getEventData() {
+async function getEventData(maxItems: number) {
   const query = `
-    *[_type == 'event'] | order(date desc) {
+    *[_type == 'event'][0..${maxItems - 1}] | order(date desc) {
     title,
       title,
       "currentSlug": slug.current,
@@ -34,23 +35,44 @@ async function getEventData() {
   return data;
 }
 
-const EventsList: React.FC<Props> = async ({ display }) => {
-  const data = await getEventData();
+async function getFromRefs(refs: any) {
+  const refIds = refs.map((ref: any) => ref._ref);
+
+  const query = `
+    *[_type == "event" && _id in $refIds] {
+      title,
+      "currentSlug": slug.current,
+      date
+    }
+  `;
+
+  const data = await client.fetch(query, { refIds });
+
+  return data;
+}
+
+const EventsList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
+  let data = [];
+  if (isCustom) {
+    data = await getFromRefs(items);
+  } else {
+    data = await getEventData(maxItems ?? 100);
+  }
   // console.log(data);
 
   return (
     <section className="my-8">
-      <div className="mx-auto max-w-3xl flex flex-col my-8">
+      <div className="mx-auto max-w-3xl flex flex-col my-8 px-2">
         {data.map((event: any, idx: number) => (
           <div key={idx} className="flex gap-4 items-stretch">
             <div className="flex items-center w-28 flex-shrink-0">
-              <div className="my-auto w-full text-center">
+              <div className="my-auto w-full text-center text-sm md:text-base">
                 {formatDate(event.date)}
               </div>
             </div>
             <Separator orientation="vertical" />
             <Link
-              className="items-center flex font-medium text-lg text-ctid-taupe my-4 hover:underline flex-grow"
+              className="items-center flex font-medium md:text-lg text-ctid-taupe my-4 hover:underline flex-grow"
               href={`/events/${event.currentSlug}`}
             >
               {event.title}

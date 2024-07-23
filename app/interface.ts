@@ -18,6 +18,7 @@ export interface fullPage {
   currentSlug: string;
   title: string;
   modules: any;
+  heroImage: any;
 }
 
 export interface linkItem {
