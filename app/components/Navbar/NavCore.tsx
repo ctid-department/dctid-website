@@ -16,7 +16,7 @@ export default function NavCore({...props}){
   )
 
   const navItems = props.items
-  const navItemCSS = "p-2 md:mx-1 hover:bg-ctid-gray hover:text-black active:bg-ctid-charcoal active:text-white"
+  const navItemCSS = "p-3 md:p-5 text-sm md:mx-1 hover:bg-ctid-gray hover:text-black active:bg-ctid-charcoal active:text-white"
 
   return (
     <nav className="md:flex justify-center w-full">
@@ -29,7 +29,7 @@ export default function NavCore({...props}){
               <div className="md:shadow-xl md:border-gray-200 border bg-white text-black">
                 {
                   item.items!.map((subItem: any, subIdx: any) => (
-                    <NavLink key={subIdx} className={cn(navItemCSS, "pl-10 md:pl-0 md:p-3 mx-0 md:mx-0")} href={subItem.link} title={subItem.title}/>
+                    <NavLink key={subIdx} className={cn(navItemCSS, "pl-10 md:pl-0 md:p-5 mx-0 md:mx-0")} href={subItem.link} title={subItem.title}/>
                   ))
                 }
               </div>
