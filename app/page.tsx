@@ -65,7 +65,7 @@ export default async function Page({
   return (
     <>
       {data.heroImage ? (
-        <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh]">
+        <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh] shadow-xl">
           <Image
             src={urlFor(data.heroImage).url()}
             alt="Hero Image"
