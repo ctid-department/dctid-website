@@ -50,7 +50,7 @@ export default async function OldNavbar() {
     <NavigationMenu className="max-w-6xl w-full flex-grow-0 flex flex-col items-stretch md:items-center mx-auto py-2 px-4 bg-transparent">
       <NavigationMenuList className="flex flex-col md:flex-row justify-between items-stretch">
         {navItems.map((item, idx) => (
-          <NavigationMenuItem key={idx} className="w-[100vw] sm:w-auto">
+          <NavigationMenuItem key={idx} className="w-[100vw] md:w-auto">
             {item.type === "link" ? (
               <Link href={item.link!.link} legacyBehavior passHref>
                 <NavigationMenuLink

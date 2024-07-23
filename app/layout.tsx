@@ -29,7 +29,6 @@ export default function RootLayout({
           {
             // <OldNavbar />
           }
-          <OldNavbar />
           <Navbar />
         </NavbarWrapper>
         <main className="max-w-4xl mx-auto px-4">

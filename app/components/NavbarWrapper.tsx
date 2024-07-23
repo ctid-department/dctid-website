@@ -13,13 +13,13 @@ export default function NavbarWrapper({...props}){
   }
 
   const burgerCSS = cn(
-    "w-full bg-ctid-green block bg-center bg-contain sm:hidden text-white",
+    "w-full bg-ctid-green block bg-center bg-contain md:hidden text-white",
     "h-[10vh]"
   )
 
   return (
     <div className="">
-      <div className={navbarHidden ? "hidden sm:block bg-ctid-green sm:bg-transparent text-white sm:text-black" : "block bg-ctid-green text-white"}>
+      <div className={navbarHidden ? "hidden md:block bg-ctid-green md:bg-transparent text-white md:text-black" : "block bg-ctid-green text-white"}>
         {props.children}
       </div>
       <button className={burgerCSS} onClick={handleClick}>
