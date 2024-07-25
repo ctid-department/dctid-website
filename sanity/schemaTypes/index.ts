@@ -9,6 +9,8 @@ import imageModule from './modules/image-module'
 import event from './event'
 import eventsList from './modules/events-list'
 import profileCard from './modules/profile-card'
+import profilesList from './modules/profiles-list'
+import profile from './profile'
 
 export const schemaTypes = [
   article,
@@ -22,4 +24,6 @@ export const schemaTypes = [
   eventsList,
   imageModule,
   profileCard,
+  profilesList,
+  profile,
 ]

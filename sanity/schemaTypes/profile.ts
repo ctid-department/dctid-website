@@ -1,12 +1,12 @@
 import {defineField, defineType} from 'sanity'
 import {TfiFaceSmile} from 'react-icons/tfi'
-import {getBlockText} from '../../utils'
+import {getBlockText} from '../utils'
 
 export default defineType({
-  name: 'profile-card',
-  title: 'Profile Card',
+  name: 'profile',
+  title: 'Profile',
   icon: TfiFaceSmile,
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'image',
@@ -36,7 +36,7 @@ export default defineType({
       name: 'name',
     },
     prepare: ({media, content, name}) => ({
-      title: 'Profile Card',
+      title: 'Profile',
       subtitle: getBlockText(content),
       media,
     }),
