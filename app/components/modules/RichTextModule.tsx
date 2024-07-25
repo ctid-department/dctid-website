@@ -8,9 +8,18 @@ interface Props {
 }
 
 const RichTextModule: React.FC<Props> = ({ content, alignment }) => {
+  const alignmentClasses = {
+    left: "text-left",
+    right: "text-right",
+    center: "text-center",
+    justify: "text-justify",
+  };
+
   return (
     <section className="my-8">
-      <div className={`my-8 prose prose-md !max-w-none text-${alignment}`}>
+      <div
+        className={`my-8 prose prose-md !max-w-none ${alignmentClasses[alignment]}`}
+      >
         <PortableText
           value={content}
           components={{
