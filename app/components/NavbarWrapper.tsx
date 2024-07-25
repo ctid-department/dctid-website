@@ -31,6 +31,7 @@ export default function NavbarWrapper({...props}){
 
   const wrapperCSS = cn(
     navbarHidden ? "h-0 md:h-auto" : "h-auto",
+    "z-50",
     props.className
   )
 
