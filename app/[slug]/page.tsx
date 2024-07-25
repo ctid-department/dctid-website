@@ -25,7 +25,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   if (!data) {
     return (
       <div className="min-h-80 text-center mt-16">
-        <h1 className="text-3xl font-bold">404 - Page Not Found</h1>
+        <h1 className="text-3xl font-bold text-ctid-taupe">
+          404 - Page Not Found
+        </h1>
         <p className="mt-4">The page you are looking for does not exist.</p>
       </div>
     );
@@ -34,7 +36,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="my-4 mt-8">
       <h1>
-        <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+        <span className="mt-2 block text-lg text-center leading-8 font-bold uppercase text-ctid-taupe">
           {data.title}
         </span>
       </h1>

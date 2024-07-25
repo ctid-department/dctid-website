@@ -79,7 +79,7 @@ export default async function Page({
       )}
       <div className="my-4 mt-8">
         <h1>
-          <span className="mt-2 block text-lg text-center leading-8 font-bold sm:text-2xl uppercase">
+          <span className="mt-2 block text-lg text-center leading-8 font-bold uppercase text-ctid-taupe">
             {data.title}
           </span>
         </h1>
