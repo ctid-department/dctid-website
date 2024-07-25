@@ -15,7 +15,7 @@ export const revalidate = 30;
 
 async function getProfileData(maxItems: number) {
   const query = `
-    *[_type == 'profile'][0..${maxItems - 1}] {
+    *[_type == 'profile'][0..${maxItems - 1}] |order(orderRank) {
       image,
       name,
       content

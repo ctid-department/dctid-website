@@ -1,11 +1,13 @@
 import {defineField, defineType} from 'sanity'
 import {TfiFaceSmile} from 'react-icons/tfi'
 import {getBlockText} from '../utils'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'profile',
   title: 'Profile',
   icon: TfiFaceSmile,
+  orderings: [orderRankOrdering],
   type: 'document',
   fields: [
     defineField({
@@ -28,6 +30,7 @@ export default defineType({
       of: [{type: 'block'}],
       validation: (Rule) => Rule.required(),
     }),
+    orderRankField({type: 'navigation'}),
   ],
   preview: {
     select: {
