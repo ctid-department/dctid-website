@@ -17,6 +17,18 @@ export default function NavList({...props}){
     }
   }
 
+  const handleOnMouseOver = async () => {
+    if(props.activeOnHover && window.matchMedia("(min-width: 768px)").matches){
+      props.showRef[1](props.showKey)
+    }
+  }
+
+  const handleOnMouseLeave = async () => {
+    if(props.activeOnHover && window.matchMedia("(min-width: 768px)").matches){
+      props.showRef[1]("")
+    }
+  }
+
   const parentCSS = cn(
     props.showRef[0] == props.showKey ? "max-h-max" : "max-h-0",
     "transition-all"
@@ -30,7 +42,7 @@ export default function NavList({...props}){
   )
 
   return(
-    <div>
+    <div onMouseOver={handleOnMouseOver} onMouseLeave={handleOnMouseLeave}>
       <p className={navListCSS} onClick={handleClick}>{props.title} <ChevronDown className={`inline w-3 h-3 ${props.showRef[0] == props.showKey ? "rotate-180" : ""}`}/></p>
       <div className={childWrapperCSS}>
         {props.children}

@@ -25,7 +25,7 @@ export default function NavCore({...props}){
           item.type === "link" ? (
             <NavLink key={idx} className={navItemCSS} href={item.link!.link} title={item.link!.title}/>
           ) : (
-            <NavList key={idx} showRef={[shownList, setShownList]} showKey={idx} className={navItemCSS} title={item.title} popout>
+            <NavList activeOnHover key={idx} showRef={[shownList, setShownList]} showKey={idx} className={navItemCSS} title={item.title} popout>
               <div className="md:shadow-xl md:border-gray-200 border bg-white text-black">
                 {
                   item.items!.map((subItem: any, subIdx: any) => (
