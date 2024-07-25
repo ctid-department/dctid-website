@@ -78,7 +78,7 @@ const ArticlesList: React.FC<Props> = async ({
             </Link>
             <CardContent className="p-4">
               <Link href={`/news/${article.currentSlug}`}>
-                <h3 className="text-md line-clamp-2 font-semibold">
+                <h3 className="text-md line-clamp-2 font-semibold text-ctid-taupe">
                   {article.title}
                 </h3>
               </Link>
@@ -94,7 +94,7 @@ const ArticlesList: React.FC<Props> = async ({
           <Card className="shadow rounded my-auto h-max">
             <CardContent className="p-4">
               <Link href="/news">
-                <h3 className="text-md line-clamp-2 font-semibold text-center">
+                <h3 className="text-md line-clamp-2 font-semibold text-center text-ctid-taupe">
                   View all
                 </h3>
               </Link>
