@@ -43,11 +43,7 @@ async function getFromRefs(refs: any) {
   return data;
 }
 
-const ProfilesList: React.FC<Props> = async ({
-  isCustom,
-  maxItems,
-  items,
-}) => {
+const ProfilesList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
   let data: profileItem[] = [];
   if (isCustom) {
     data = await getFromRefs(items);
@@ -58,27 +54,30 @@ const ProfilesList: React.FC<Props> = async ({
   return (
     <section className="my-8">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-3 my-16 gap-8">
-        {data.map((profile) => (
-          <section className="drop-shadow-lg bg-ctid-beige rounded-lg content-center w-60 h-70">
-          <div className="">
-            <Image
+        {data.map((profile, idx) => (
+          <section
+            key={idx}
+            className="drop-shadow-lg bg-ctid-beige rounded-lg content-center w-60 h-70"
+          >
+            <div className="">
+              <Image
                 src={urlFor(profile.image).url()}
                 width={150}
                 height={150}
                 alt="Image"
                 priority
                 className="mx-auto rounded-full h-auto shadow object-cover min-h-full center my-3 self-center"
-            />
-          </div>
-          <div className="my-3 min-h-full w-60 text-center items-center">
-            <div className= "text-ctid-taupe font-bold text-base">
+              />
+            </div>
+            <div className="my-3 min-h-full w-60 text-center items-center">
+              <div className="text-ctid-taupe font-bold text-base">
                 <PortableText value={profile.name} />
-            </div>
-            <div className="prose prose-blue prose-md prose-headings:text-white text-ctid-taupe text-sm">
+              </div>
+              <div className="prose prose-blue prose-md prose-headings:text-white text-ctid-taupe text-sm">
                 <PortableText value={profile.content} />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
         ))}
       </div>
     </section>
