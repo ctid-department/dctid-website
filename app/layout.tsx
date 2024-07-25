@@ -34,6 +34,7 @@ export default function RootLayout({
         <main className="max-w-4xl mx-auto px-4">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
