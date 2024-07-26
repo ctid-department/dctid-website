@@ -3,6 +3,7 @@ import { client, urlFor } from "@/app/lib/sanity";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import ArticleCard from "@/app/components/ArticleCard";
 
 export const revalidate = 30;
 
@@ -64,27 +65,13 @@ export default async function Article({
       </h1>
       <div className="mx-auto max-w-3xl grid grid-cols-1 md:grid-cols-2 my-16 gap-8">
         {data.map((article, idx) => (
-          <Card key={idx} className="shadow rounded">
-            <Link href={`/news/${article.currentSlug}`}>
-              <Image
-                src={urlFor(article.heroImage).url()}
-                alt="image"
-                width={500}
-                height={500}
-                className="rounded-t h-[200px] object-cover min-w-full"
-              />
-            </Link>
-            <CardContent className="p-4">
-              <Link href={`/news/${article.currentSlug}`}>
-                <h3 className="text-md line-clamp-2 font-semibold text-ctid-taupe hover:underline">
-                  {article.title}
-                </h3>
-              </Link>
-              <p className="line-clamp-3 text-xs mt-1 text-ctid-taupe">
-                {article.date}
-              </p>
-            </CardContent>
-          </Card>
+          <ArticleCard
+            key={idx}
+            title={article.title}
+            href={`/news/${article.currentSlug}`}
+            date={article.date}
+            imageSrc={urlFor(article.heroImage).url()}
+          />
         ))}
       </div>
     </div>

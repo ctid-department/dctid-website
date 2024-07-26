@@ -35,7 +35,6 @@ export default async function Article({
   params: { slug: string };
 }) {
   const data: fullArticle = await getData(params.slug);
-  console.log(params.slug);
 
   // console.log(data);
 
