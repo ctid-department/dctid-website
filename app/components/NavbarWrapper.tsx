@@ -16,15 +16,21 @@ export default function NavbarWrapper({...props}){
   const burgerCSS = cn(
     // "bg-ctid-green",
     "block bg-center bg-contain md:hidden text-white",
-    "w-[65px] h-[65px] rounded-tl-[33px] float-right relative top-[-65px] ",
+    "w-[65px] h-[65px] relative top-[-65px] ",
+    // "rounded-tl-[33px] float-right ",
+    "rounded-tr-[33px] float-left ",
     "hover:bg-ctid-gray hover:text-black",
     "active:bg-ctid-charcoal active:text-white",
     "transition-all"
   )
 
   const childrenCSS = cn(
-    navbarHidden ? "h-0 md:h-auto md:block scale-y-0 md:scale-y-100 -translate-y-1/2 md:translate-y-0" : "h-auto scale-y-100",
+    navbarHidden ? "h-0 scale-y-0 -translate-y-1/2"
+      : "h-auto scale-y-100",
+    "md:h-auto md:block md:scale-y-100 md:translate-y-0",
     "bg-ctid-green md:bg-transparent text-white md:text-black",
+    "float-right w-full -translate-y-[65px] mb-[-65px]", // accomodate left burger button
+    "md:float-none md:mb-auto md:translate-y-[0px]",  // remove left burger button accomodation
     // "transition-all"
     // navbarHidden ? "hidden md:block bg-ctid-green md:bg-transparent text-white md:text-black" : "block bg-ctid-green text-white"
   )
