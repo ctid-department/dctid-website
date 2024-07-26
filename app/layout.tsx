@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavbarWrapper from "./components/NavbarWrapper";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -25,7 +26,9 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class">
           <Header />
-          <Navbar />
+          <NavbarWrapper>
+            <Navbar />
+          </NavbarWrapper>
           <main className="max-w-4xl mx-auto px-4 flex-grow">{children}</main>
           <Footer />
         </ThemeProvider>
