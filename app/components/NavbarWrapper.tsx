@@ -42,7 +42,6 @@ export default function NavbarWrapper({...props}){
   return (
     <div className={wrapperCSS}>
       <button className={burgerCSS} onClick={handleClick}>
-        {/*<ChevronDown className={`m-auto text-white ${navbarHidden ? "" : "rotate-180"}`}/>*/}
         <FiMenu className="m-auto w-2/5 h-2/5"/>
       </button>
       <div className={childrenCSS}>
