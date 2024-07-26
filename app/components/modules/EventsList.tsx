@@ -2,6 +2,7 @@ import React from "react";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import DateSeparator from "../DateSeparator"
 
 interface Props {
   isCustom: boolean;
@@ -60,17 +61,46 @@ const EventsList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
   }
   // console.log(data);
 
+  const dateDiff = (dateString: string) => {
+    const then = new Date(dateString);
+    const now = new Date();
+    return new Date(then.valueOf() - now.valueOf());
+  }
+
+  const daysDiff = (diff: Date) => {
+    return Math.ceil(diff.valueOf()/(1000 * 60 * 60 * 24))
+  }
+
+  const formatDateDiff = (diff: Date) => {
+    const dDiff = daysDiff(diff)
+    if(Math.abs(dDiff) < 30){
+      return dDiff == 0 ?
+        "Today" :
+        `~${Math.abs(dDiff)} day${Math.abs(dDiff) > 1 ? "s" : ""} ${dDiff > 0 ? "from now" : "ago"}`
+    }else{
+      const monthsDiff = Math.ceil(dDiff/30)
+      return monthsDiff == 0 ?
+        "This past month" :
+        `~${Math.abs(monthsDiff)} month${Math.abs(monthsDiff) > 1 ? "s" : ""} ${monthsDiff > 0 ? "from now" : "ago"}`
+    }
+  }
+
+  const dateNow = new Date()
+
   return (
     <section className="my-8">
       <div className="mx-auto max-w-3xl flex flex-col my-8 px-2">
         {data.map((event: any, idx: number) => (
-          <div key={idx} className="flex gap-4 items-stretch">
+          <div key={idx} className={`flex gap-4 items-stretch`}>
             <div className="flex items-center w-28 flex-shrink-0">
               <div className="my-auto w-full text-center text-sm md:text-base">
-                {formatDate(event.date)}
+                <span>{formatDate(event.date)}</span>
+                <br />
+                <span className="text-xs">({formatDateDiff(dateDiff(event.date))})</span>
               </div>
             </div>
-            <Separator orientation="vertical" />
+            { /*<Separator orientation="vertical" />*/ }
+            <DateSeparator />
             <Link
               className="items-center flex font-medium md:text-lg text-ctid-taupe my-4 hover:underline flex-grow"
               href={`/events/${event.currentSlug}`}
