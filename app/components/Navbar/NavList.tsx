@@ -13,7 +13,6 @@ export default function NavList({...props}){
   const handleClick = async () => {
     if(~props.activeOnHover){
       props.showRef[1](props.showRef[0] == props.showKey ? "" : props.showKey)
-      // setNavListHidden(!navListHidden)
     }
   }
 
