@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export const revalidate = 30;
 
-export function formatMonthYear(year: string, month: string) {
+function formatMonthYear(year: string, month: string) {
   const date = new Date(`${year}-${month}-01`);
   return date.toLocaleDateString("en-PH", {
     year: "numeric",

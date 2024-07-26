@@ -2,7 +2,6 @@ import { fullPage } from "./interface";
 import { client, urlFor } from "./lib/sanity";
 import Modules from "./components/Modules";
 import SearchResults from "./components/SearchResults";
-import Image from "next/image";
 import Hero from "./components/Hero";
 
 export const revalidate = 30;
