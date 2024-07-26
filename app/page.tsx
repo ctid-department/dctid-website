@@ -40,9 +40,8 @@ async function performSearch(searchQuery: string) {
   +
   *[
     _type == 'profile' && 
-    (pt::text(name) match $searchQuery + "*" || pt::text(content) match $searchQuery + "*") && 
-    !("faculty-and-staff" in ^.currentSlug)
-  ][0] {
+    (pt::text(name) match $searchQuery + "*" || pt::text(content) match $searchQuery + "*")
+  ][0..0] {
     "_type": "page",
     "title": "Faculty and Staff",
     "currentSlug": "faculty-and-staff"
