@@ -31,8 +31,6 @@ export default function NavbarWrapper({...props}){
     "bg-ctid-green md:bg-transparent text-white md:text-black",
     "float-right w-full -translate-y-[65px] mb-[-65px]", // accomodate left burger button
     "md:float-none md:mb-auto md:translate-y-[0px]",  // remove left burger button accomodation
-    // "transition-all"
-    // navbarHidden ? "hidden md:block bg-ctid-green md:bg-transparent text-white md:text-black" : "block bg-ctid-green text-white"
   )
 
   const wrapperCSS = cn(
@@ -44,7 +42,6 @@ export default function NavbarWrapper({...props}){
   return (
     <div className={wrapperCSS}>
       <button className={burgerCSS} onClick={handleClick}>
-        {/*<ChevronDown className={`m-auto text-white ${navbarHidden ? "" : "rotate-180"}`}/>*/}
         <FiMenu className="m-auto w-2/5 h-2/5"/>
       </button>
       <div className={childrenCSS}>

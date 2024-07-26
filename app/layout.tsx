@@ -26,12 +26,9 @@ export default function RootLayout({
       >
         <Header />
         <NavbarWrapper>
-          {
-            // <OldNavbar />
-          }
           <Navbar />
         </NavbarWrapper>
-        <main className="max-w-4xl mx-auto px-4">
+        <main className="max-w-4xl mx-auto px-4 flex-grow">
           {children}
         </main>
         <Footer />

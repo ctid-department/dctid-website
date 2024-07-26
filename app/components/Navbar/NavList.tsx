@@ -13,7 +13,6 @@ export default function NavList({...props}){
   const handleClick = async () => {
     if(~props.activeOnHover){
       props.showRef[1](props.showRef[0] == props.showKey ? "" : props.showKey)
-      // setNavListHidden(!navListHidden)
     }
   }
 
@@ -36,7 +35,6 @@ export default function NavList({...props}){
 
   const childWrapperCSS = cn(
     props.popout ? "md:absolute md:z-50" : "",
-    // navListHidden ? "hidden" : ""
     props.showRef[0] == props.showKey ? "h-auto scale-y-100" : "h-0 md:block scale-y-0 -translate-y-1/2",
     "transition-all"
   )
