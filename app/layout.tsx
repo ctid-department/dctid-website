@@ -19,16 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} flex flex-col min-h-dvh relative overflow-x-hidden`}
       >
-        {" "}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class">
           <Header />
           <Navbar />
           <main className="max-w-4xl mx-auto px-4 flex-grow">{children}</main>
