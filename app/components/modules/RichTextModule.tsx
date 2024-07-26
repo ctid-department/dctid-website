@@ -18,7 +18,7 @@ const RichTextModule: React.FC<Props> = ({ content, alignment }) => {
   return (
     <section className="my-8">
       <div
-        className={`my-8 prose prose-md !max-w-none ${alignmentClasses[alignment]} prose-a:text-ctid-taupe hover:prose-a:text-inherit`}
+        className={`my-8 prose prose-md !max-w-none ${alignmentClasses[alignment]} prose-a:text-ctid-taupe hover:prose-a:brightness-95`}
       >
         <PortableText
           value={content}

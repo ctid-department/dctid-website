@@ -78,11 +78,11 @@ const ArticlesList: React.FC<Props> = async ({
             </Link>
             <CardContent className="p-4">
               <Link href={`/news/${article.currentSlug}`}>
-                <h3 className="text-md line-clamp-2 font-semibold text-ctid-taupe">
+                <h3 className="text-md line-clamp-2 font-semibold text-ctid-taupe hover:underline">
                   {article.title}
                 </h3>
               </Link>
-              <p className="line-clamp-3 text-xs mt-1 text-gray-600">
+              <p className="line-clamp-3 text-xs mt-1 text-ctid-taupe">
                 {article.date
                   ? formatDate(article.date)
                   : formatDate(article.creationDate)}
