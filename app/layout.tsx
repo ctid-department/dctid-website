@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavbarWrapper from "./components/NavbarWrapper";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -23,8 +24,12 @@ export default function RootLayout({
         className={`${inter.className} flex flex-col min-h-dvh relative overflow-x-hidden`}
       >
         <Header />
-        <Navbar />
-        <main className="max-w-4xl mx-auto px-4 flex-grow">{children}</main>
+        <NavbarWrapper>
+          <Navbar />
+        </NavbarWrapper>
+        <main className="max-w-4xl mx-auto px-4 flex-grow">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
