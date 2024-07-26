@@ -39,7 +39,7 @@ export default defineType({
       name: 'name',
     },
     prepare: ({media, content, name}) => ({
-      title: 'Profile',
+      title: getBlockText(name),
       subtitle: getBlockText(content),
       media,
     }),
