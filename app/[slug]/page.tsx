@@ -1,9 +1,9 @@
 import { fullPage } from "../interface";
 import { client, urlFor } from "../lib/sanity";
-import Image from "next/image";
 
 import Modules from "../components/Modules";
 import ArchivesList from "../components/ArchivesList";
+import Hero from "../components/Hero";
 
 export const revalidate = 30;
 
@@ -39,19 +39,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      {data.heroImage ? (
-        <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh] shadow-xl">
-          <Image
-            src={urlFor(data.heroImage).url()}
-            alt="Hero Image"
-            priority
-            fill
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <></>
-      )}
+      {data.heroImage ? <Hero src={urlFor(data.heroImage).url()} /> : <></>}
       <div className="my-4 mt-8 flex flex-col md:flex-row md:gap-16">
         <div>
           <h1>

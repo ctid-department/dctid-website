@@ -3,6 +3,7 @@ import { client, urlFor } from "./lib/sanity";
 import Modules from "./components/Modules";
 import SearchResults from "./components/SearchResults";
 import Image from "next/image";
+import Hero from "./components/Hero";
 
 export const revalidate = 30;
 
@@ -64,19 +65,7 @@ export default async function Page({
 
   return (
     <>
-      {data.heroImage ? (
-        <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh] shadow-xl">
-          <Image
-            src={urlFor(data.heroImage).url()}
-            alt="Hero Image"
-            priority
-            fill
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <></>
-      )}
+      {data.heroImage ? <Hero src={urlFor(data.heroImage).url()} /> : <></>}
       <div className="my-4 mt-8">
         <h1>
           <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
