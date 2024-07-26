@@ -31,8 +31,6 @@ export default function NavbarWrapper({...props}){
     "bg-ctid-green md:bg-transparent text-white md:text-black",
     "float-right w-full -translate-y-[65px] mb-[-65px]", // accomodate left burger button
     "md:float-none md:mb-auto md:translate-y-[0px]",  // remove left burger button accomodation
-    // "transition-all"
-    // navbarHidden ? "hidden md:block bg-ctid-green md:bg-transparent text-white md:text-black" : "block bg-ctid-green text-white"
   )
 
   const wrapperCSS = cn(
