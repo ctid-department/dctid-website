@@ -41,7 +41,7 @@ export default async function Article({
     <div className="my-4">
       <h1>
         <Breadcrumb>
-          <BreadcrumbList className="md:w-max w-full overflow-x-auto text-sm md:text-base font-semibold justify-center">
+          <BreadcrumbList className="w-full overflow-x-auto text-sm md:text-base font-semibold justify-center text-ctid-taupe">
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href="/">Home</Link>
@@ -55,16 +55,16 @@ export default async function Article({
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage className="font-medium text-center">
+              <BreadcrumbPage className="font-medium text-center text-ctid-taupe">
                 {data.title}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
+        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight text-ctid-taupe">
           {data.title}
         </span>
-        <span className="mt-2 block mx-auto text-center">
+        <span className="mt-2 block mx-auto text-center text-ctid-taupe">
           {formatDate(data.date)}
         </span>
       </h1>

@@ -36,6 +36,8 @@ export default defineType({
         {type: 'hero.split'},
         {type: 'articles-list'},
         {type: 'events-list'},
+        {type: 'profile-card'},
+        {type: 'profiles-list'},
       ],
     },
   ],

@@ -46,8 +46,26 @@ export default defineType({
         {type: 'hero.split'},
         {type: 'articles-list'},
         {type: 'events-list'},
+        {type: 'profile-card'},
+        {type: 'profiles-list'},
       ],
     },
+  ],
+  orderings: [
+    {
+      title: 'Date, Newest',
+      name: 'DateDesc',
+      by: [
+        {field: 'date', direction: 'desc'}
+      ]
+    },
+    {
+      title: 'Date, Oldest',
+      name: 'DateAsc',
+      by: [
+        {field: 'date', direction: 'asc'}
+      ]
+    }
   ],
   preview: {
     select: {

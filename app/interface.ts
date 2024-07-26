@@ -32,3 +32,9 @@ export interface navItem {
   items?: linkItem[];
   link?: linkItem;
 }
+
+export interface profileItem {
+  name: any;
+  content: any;
+  image: any;
+}

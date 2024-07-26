@@ -10,7 +10,7 @@ export default async function Footer({ ...props }) {
 
   return (
     <footer className={footerCSS}>
-      <div className="max-w-5xl w-full flex flex-col sm:flex-row justify-around mx-auto gap-8 pt-8 pb-16 px-8">
+      <div className="max-w-5xl w-full flex flex-col md:flex-row justify-around mx-auto gap-8 pt-8 pb-16 px-8">
         <AddressList
           className="md:w-[40%]"
           title="Department of Clothing, Textiles and Interior Design"

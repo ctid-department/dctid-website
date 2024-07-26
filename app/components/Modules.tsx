@@ -3,6 +3,8 @@ import EventsList from "./modules/EventsList";
 import HeroSplit from "./modules/HeroSplit";
 import ImageModule from "./modules/ImageModule";
 import RichTextModule from "./modules/RichTextModule";
+import ProfileCard from "./modules/ProfileCard";
+import ProfilesList from "./modules/ProfilesList";
 
 export default function Modules({
   modules,
@@ -25,6 +27,10 @@ export default function Modules({
             return <EventsList {...module} key={module._key} />;
           case "image-module":
             return <ImageModule {...module} key={module._key} />;
+          case "profile-card":
+            return <ProfileCard {...module} key={module._key} />;
+          case "profiles-list":
+            return <ProfilesList {...module} key={module._key} />;
           default:
             return <div data-type={module._type} key={module._key} />;
         }
