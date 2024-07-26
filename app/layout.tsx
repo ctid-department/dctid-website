@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +23,17 @@ export default function RootLayout({
       <body
         className={`${inter.className} flex flex-col min-h-dvh relative overflow-x-hidden`}
       >
-        <Header />
-        <Navbar />
-        <main className="max-w-4xl mx-auto px-4 flex-grow">{children}</main>
-        <Footer />
+        {" "}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          disableTransitionOnChange
+        >
+          <Header />
+          <Navbar />
+          <main className="max-w-4xl mx-auto px-4 flex-grow">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
