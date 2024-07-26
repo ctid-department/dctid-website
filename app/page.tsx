@@ -20,20 +20,36 @@ async function getPageData() {
 }
 
 async function performSearch(searchQuery: string) {
-  const searchResults = await client.fetch(`
-    *[
-      (_type == 'article' || _type == 'page' || _type == 'event') && 
-      (
-        title match "${searchQuery}*" ||
-        count(modules[_type == "richtext-module" && pt::text(content) match "${searchQuery}*"]) > 0
-      )
-    ] {
-      _type,
-      title,
-      "currentSlug": slug.current,
-      heroImage
-    }
-  `);
+  const searchResults = await client.fetch(
+    `
+  *[
+    (_type == 'article' || _type == 'page' || _type == 'event') && 
+    (
+      title match $searchQuery + "*" ||
+      count(modules[_type == "richtext-module" && pt::text(content) match $searchQuery + "*"]) > 0 ||
+      count(modules[_type == "image-module" && caption match $searchQuery + "*"]) > 0 ||
+      count(modules[_type == "hero.split" && pt::text(content) match $searchQuery + "*"]) > 0 ||
+      count(modules[_type == "profile-card" && pt::text(items[].reference->name) match $searchQuery + "*"]) > 0
+    )
+  ] {
+    _type,
+    title,
+    "currentSlug": slug.current,
+    image
+  }
+  +
+  *[
+    _type == 'profile' && 
+    (pt::text(name) match $searchQuery + "*" || pt::text(content) match $searchQuery + "*") && 
+    !("faculty-and-staff" in ^.currentSlug)
+  ][0] {
+    "_type": "page",
+    "title": "Faculty and Staff",
+    "currentSlug": "faculty-and-staff"
+  }
+  `,
+    { searchQuery }
+  );
   return searchResults;
 }
 
