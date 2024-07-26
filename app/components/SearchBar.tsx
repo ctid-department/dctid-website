@@ -30,7 +30,6 @@ export default function SearchBar() {
   }
 
   function toggleSearch() {
-    console.log(searchTerm);
     if (isSearchVisible && searchTerm) {
       handleSearch();
       setSearchTerm("");

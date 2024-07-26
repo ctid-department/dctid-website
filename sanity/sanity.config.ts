@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import {GrNavigate, GrUserNew} from 'react-icons/gr'
+import {TfiLayoutMediaOverlay} from 'react-icons/tfi'
 
 export default defineConfig({
   name: 'default',
@@ -18,6 +19,7 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            S.documentTypeListItem('page').title('Pages'),
             S.documentTypeListItem('article').title('News'),
             S.documentTypeListItem('event').title('Events'),
             orderableDocumentListDeskItem({
@@ -34,7 +36,10 @@ export default defineConfig({
               S,
               context,
             }),
-            S.documentTypeListItem('page'),
+            S.listItem()
+              .title('Footer')
+              .icon(TfiLayoutMediaOverlay)
+              .child(S.document().schemaType('footer').documentId('footer')),
           ]),
     }),
 

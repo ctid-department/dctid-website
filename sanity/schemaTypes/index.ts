@@ -11,6 +11,7 @@ import eventsList from './modules/events-list'
 import profileCard from './modules/profile-card'
 import profilesList from './modules/profiles-list'
 import profile from './profile'
+import footer from './footer'
 
 export const schemaTypes = [
   article,
@@ -26,4 +27,5 @@ export const schemaTypes = [
   profileCard,
   profilesList,
   profile,
+  footer,
 ]

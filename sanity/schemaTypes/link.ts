@@ -1,5 +1,4 @@
 import {defineField, defineType} from 'sanity'
-import internal from 'stream'
 
 export default defineType({
   name: 'link',
@@ -12,6 +11,7 @@ export default defineType({
     defineField({
       name: 'label',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'type',
@@ -23,6 +23,7 @@ export default defineType({
           {title: 'external', value: 'external'},
         ],
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'internal',
@@ -31,17 +32,32 @@ export default defineType({
         {type: 'page'},
         // {type: 'article'}
       ],
+      validation: (Rule) =>
+        Rule.custom((internal, context) => {
+          const linkType = (context.parent as {type?: string})?.type ?? ''
+          if (linkType === 'internal' && !internal) {
+            return 'This field is required'
+          }
+          return true
+        }),
       hidden: ({parent}) => parent?.type !== 'internal',
     }),
     defineField({
       name: 'external',
       type: 'url',
+      title: 'URL',
       validation: (Rule) =>
         Rule.uri({
           scheme: ['http', 'https', 'mailto', 'tel'],
           allowRelative: true,
+        }).custom((external, context) => {
+          const linkType = (context.parent as {type?: string})?.type ?? ''
+          if (linkType === 'external' && !external) {
+            return 'This field is required'
+          }
+          return true
         }),
-      hidden: ({parent}) => parent?.type !== 'external',
+      hidden: ({parent}) => (parent as {type?: string})?.type !== 'external',
     }),
   ],
   preview: {
