@@ -73,7 +73,7 @@ const ArticlesList: React.FC<Props> = async ({
                 alt="image"
                 width={500}
                 height={500}
-                className="rounded-t h-[200px] object-cover"
+                className="rounded-t h-[200px] object-cover min-w-full"
               />
             </Link>
             <CardContent className="p-4">

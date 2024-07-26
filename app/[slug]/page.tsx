@@ -1,7 +1,9 @@
 import { fullPage } from "../interface";
-import { client } from "../lib/sanity";
+import { client, urlFor } from "../lib/sanity";
+import Image from "next/image";
 
 import Modules from "../components/Modules";
+import ArchivesList from "../components/ArchivesList";
 
 export const revalidate = 30;
 
@@ -10,8 +12,10 @@ async function getPageData(slug: string) {
   *[_type == 'page' && slug.current == '${slug}'] {
     "currentSlug": slug.current,
     title,
+    heroImage,
     modules[]
-  }[0]`;
+  }[0]
+  `;
 
   const data = await client.fetch(query);
   return data || null;
@@ -34,13 +38,31 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="my-4 mt-8">
-      <h1>
-        <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
-          {data.title}
-        </span>
-      </h1>
-      <Modules modules={data?.modules} />
-    </div>
+    <>
+      {data.heroImage ? (
+        <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh] shadow-xl">
+          <Image
+            src={urlFor(data.heroImage).url()}
+            alt="Hero Image"
+            priority
+            fill
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className="my-4 mt-8 flex flex-col md:flex-row md:gap-16">
+        <div>
+          <h1>
+            <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
+              {data.title}
+            </span>
+          </h1>
+          <Modules modules={data?.modules} />
+        </div>
+        <div> {params.slug === "news" ? <ArchivesList /> : <></>}</div>
+      </div>
+    </>
   );
 }
