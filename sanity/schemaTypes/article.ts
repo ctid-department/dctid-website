@@ -55,6 +55,22 @@ export default defineType({
       ],
     },
   ],
+  orderings: [
+    {
+      title: 'Date, Newest',
+      name: 'DateDesc',
+      by: [
+        {field: 'date', direction: 'desc'}
+      ]
+    },
+    {
+      title: 'Date, Oldest',
+      name: 'DateAsc',
+      by: [
+        {field: 'date', direction: 'asc'}
+      ]
+    }
+  ],
   preview: {
     select: {
       title: 'title',
