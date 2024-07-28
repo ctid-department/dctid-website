@@ -1,7 +1,9 @@
 import { fullPage } from "../interface";
-import { client } from "../lib/sanity";
+import { client, urlFor } from "../lib/sanity";
 
 import Modules from "../components/Modules";
+import ArchivesList from "../components/ArchivesList";
+import Hero from "../components/Hero";
 
 export const revalidate = 30;
 
@@ -10,8 +12,10 @@ async function getPageData(slug: string) {
   *[_type == 'page' && slug.current == '${slug}'] {
     "currentSlug": slug.current,
     title,
+    heroImage,
     modules[]
-  }[0]`;
+  }[0]
+  `;
 
   const data = await client.fetch(query);
   return data || null;
@@ -34,13 +38,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="my-4 mt-8">
-      <h1>
-        <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
-          {data.title}
-        </span>
-      </h1>
-      <Modules modules={data?.modules} />
-    </div>
+    <>
+      {data.heroImage ? <Hero src={urlFor(data.heroImage).url()} /> : <></>}
+      <div className="my-4 mt-8 flex flex-col md:flex-row md:gap-16">
+        <div>
+          <h1>
+            <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
+              {data.title}
+            </span>
+          </h1>
+          <Modules modules={data?.modules} />
+        </div>
+        <div> {params.slug === "news" ? <ArchivesList /> : <></>}</div>
+      </div>
+    </>
   );
 }

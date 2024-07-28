@@ -21,7 +21,7 @@ export default function HeroSplit({
         height={image.height ?? 400}
         alt="Hero image"
         priority
-        className="mx-auto rounded h-auto shadow object-cover min-h-full"
+        className={`mx-auto h-auto shadow object-cover min-h-full${style === "1" ? "rounded" : ""}`}
       />
     </div>
   );
@@ -31,7 +31,7 @@ export default function HeroSplit({
       className={`${style === "1" ? "md:w-1/2" : "p-4 bg-ctid-green min-h-full flex items-center"}`}
     >
       <div
-        className={`prose prose-blue prose-md  ${onRight ? "md:text-right" : ""} ${style === "1" ? "" : "prose-headings:text-white text-white"}`}
+        className={`prose prose-blue prose-md hover:prose-a:brightness-95 ${onRight ? "md:text-right" : ""} ${style === "1" ? "" : "prose-white"}`}
       >
         <PortableText value={content} />
       </div>

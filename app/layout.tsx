@@ -5,6 +5,7 @@ import NavbarWrapper from "./components/NavbarWrapper";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,18 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} flex flex-col min-h-dvh relative overflow-x-hidden`}
       >
-        <Header />
-        <NavbarWrapper>
-          <Navbar />
-        </NavbarWrapper>
-        <main className="max-w-4xl mx-auto px-4 flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider attribute="class">
+          <Header />
+          <NavbarWrapper>
+            <Navbar />
+          </NavbarWrapper>
+          <main className="max-w-4xl mx-auto px-4 flex-grow">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -19,7 +19,7 @@ export default function SearchResults({
       <h1 className="text-2xl font-bold mb-4">
         Search Results for &quot;{query}&quot;
       </h1>
-      {results.length === 0 ? (
+      {!results || results.length === 0 ? (
         <p>No results found.</p>
       ) : (
         <ul>
