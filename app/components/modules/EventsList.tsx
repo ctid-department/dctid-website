@@ -2,7 +2,8 @@ import React from "react";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import DateSeparator from "../DateSeparator"
+import DateSeparator from "../DateSeparator";
+import { dateDiff, formatDateDiff } from "@/lib/utils";
 
 interface Props {
   isCustom: boolean;
@@ -60,30 +61,6 @@ const EventsList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
     data = await getEventData(maxItems ?? 100);
   }
   // console.log(data);
-
-  const dateDiff = (dateString: string) => {
-    const then = new Date(dateString);
-    const now = new Date();
-    return new Date(then.valueOf() - now.valueOf());
-  }
-
-  const daysDiff = (diff: Date) => {
-    return Math.ceil(diff.valueOf()/(1000 * 60 * 60 * 24))
-  }
-
-  const formatDateDiff = (diff: Date) => {
-    const dDiff = daysDiff(diff)
-    if(Math.abs(dDiff) < 30){
-      return dDiff == 0 ?
-        "Today" :
-        `~${Math.abs(dDiff)} day${Math.abs(dDiff) > 1 ? "s" : ""} ${dDiff > 0 ? "from now" : "ago"}`
-    }else{
-      const monthsDiff = Math.ceil(dDiff/30)
-      return monthsDiff == 0 ?
-        "This past month" :
-        `~${Math.abs(monthsDiff)} month${Math.abs(monthsDiff) > 1 ? "s" : ""} ${monthsDiff > 0 ? "from now" : "ago"}`
-    }
-  }
 
   const dateNow = new Date()
 

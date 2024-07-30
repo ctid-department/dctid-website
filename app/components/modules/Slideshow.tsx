@@ -28,16 +28,9 @@ export default function Slideshow({
   images: image[];
 }>) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [prevIndex, setPrevIndex] = useState(currentIndex)
   const [captionHidden, setCaptionHidden] = useState(true)
-  const [loaded, setLoaded] = useState(false)
-  
-  const handleLoad = () => {
-    setLoaded(true);
-  }
-  
+    
   const cycleIndex = (number: number) => {
-    setPrevIndex(currentIndex)
     setCurrentIndex(images ? (currentIndex + images.length + number) % images.length : 0)
   }
 
@@ -104,7 +97,6 @@ export default function Slideshow({
         <div className={imageContainerCSS}>{
             images?.map((img, idx) => (<Image
               key={idx}
-              onLoad={handleLoad}
               src={images ? urlFor(img.image).url() : ""}
               alt={alt ?? ""}
               width={500}
