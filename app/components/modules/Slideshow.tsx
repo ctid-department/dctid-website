@@ -18,19 +18,32 @@ interface image {
 }
 
 export default function Slideshow({
+  caption,
   images
 }: Partial<{
+  caption: string;
   images: image[];
 }>) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [prevIndex, setPrevIndex] = useState(currentIndex)
   const [captionHidden, setCaptionHidden] = useState(true)
+  const [loaded, setLoaded] = useState(false)
+  
+  const handleLoad = () => {
+    setLoaded(true);
+  }
+  
+  const cycleIndex = (number: number) => {
+    setPrevIndex(currentIndex)
+    setCurrentIndex(images ? (currentIndex + images.length + number) % images.length : 0)
+  }
 
   const handleLeft = () => {
-    setCurrentIndex(images ? (currentIndex + images.length - 1) % images.length : 0)
+    cycleIndex(-1)
   }
 
   const handleRight = () => {
-    setCurrentIndex(images ? (currentIndex + 1) % images.length : 0)
+    cycleIndex(1)
   }
 
   const toggleCaption = () => {
@@ -38,12 +51,29 @@ export default function Slideshow({
   }
 
   const wrapperCSS = cn(
-    "w-[100vw] md:w-[640px] h-[480px] m-auto",
+    "w-[90vw] md:w-[640px] h-[480px] m-auto",
     "my-3",
-    "bg-slate-500"
+    "bg-black"
   )
 
-  const imageCSS = cn("mx-[-60px] w-[100vw] md:w-[640px] h-[480px] bg-rose-500")
+  const slideshowCaptionCSS = cn(
+    "w-[90vw] md:w-[640px] m-auto",
+    "italic text-ctid-charcoal"
+  )
+
+  const imageContainerCSS = cn(
+    "w-full mx-[-60px] md:w-[640px] h-[480px]",
+    "flex flex-row",
+    "transition-all",
+  )
+
+  const imageCSS = (idx: number) => cn(
+    "block w-full h-full",
+    "transition-all",
+    "absolute top-0 left-0",
+    "object-contain",
+    currentIndex == idx ? "opacity-100" : "opacity-0"
+  )
 
   const buttonCSS = cn(
     "w-[50px] h-[50px] rounded-full",
@@ -53,28 +83,34 @@ export default function Slideshow({
 
   const dotWrapperCSS = "h-[25px] relative bottom-[50px] flex flex-row bg-[rgba(64,64,64,0.5)] text-white p-1 rounded-full m-auto"
   const dotCSS = cn(
-    "w-5 h-5" 
+    "w-5 h-5"
   )
 
   const captionCSS = cn(
-    images ? !(images[currentIndex].caption) || captionHidden ? "opacity-0" : "opacity-100" : "opacity-0",
     "p-[70px] z-40 h-[480px] relative bottom-[480px]",
     `text-xs bg-[#554940cc] text-white align-middle`,
-    "transition-all"
+    "transition-all",
+    images ? !(images[currentIndex].caption) || captionHidden ? "opacity-0" : "opacity-100" : "opacity-0"
     )
 
   return (
+    <>
     <div className={wrapperCSS}>
-      <div className="flex flex-row justify-center items-center content-between">
+      <div className="relative flex flex-row justify-center items-center content-between">
         <button onClick={handleLeft} className={cn(buttonCSS, "")}><FaAngleLeft /></button>
-        <Image
-              src={images ? urlFor(images[currentIndex].image).url() : ""}
-              alt={images ? images[currentIndex].caption ?? "" : ""}
+        <div className={imageContainerCSS}>{
+            images?.map((img, idx) => (<Image
+              key={idx}
+              onLoad={handleLoad}
+              src={images ? urlFor(img.image).url() : ""}
+              alt={images ? img.caption ?? "" : ""}
               width={500}
               height={500}
-              className={imageCSS}
+              className={imageCSS(idx)}
               priority
-              />
+            />))
+          }
+        </div>
         <button onClick={handleRight} className={cn(buttonCSS, "")}><FaAngleRight /></button>
       </div>
       <div className={"flex flex-row z-50 relative h-0 items-center"}>
@@ -88,5 +124,7 @@ export default function Slideshow({
       </div>
       <p className={captionCSS} onClick={toggleCaption}>{images ? images[currentIndex].caption : ""}</p>
     </div>
+    {caption ? <p className={slideshowCaptionCSS}>{caption}</p> : <></>}
+    </>
   );
 }
