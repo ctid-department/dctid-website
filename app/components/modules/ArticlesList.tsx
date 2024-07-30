@@ -76,7 +76,7 @@ const ArticlesList: React.FC<Props> = async ({
           />
         ))}
         {showButton ? (
-          <Card className="shadow rounded my-auto h-max col-span-2">
+          <Card className="shadow rounded my-auto h-max md:col-span-2">
             <CardContent className="p-4">
               <Link href="/news">
                 <h3 className="text-md line-clamp-2 font-semibold text-center text-ctid-taupe hover:underline">
