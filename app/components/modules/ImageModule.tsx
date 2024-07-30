@@ -3,9 +3,11 @@ import Image from "next/image";
 
 export default function ImageModule({
   image,
+  alt,
   caption,
 }: Partial<{
   caption: string;
+  alt: string;
   image: any;
 }>) {
   return (
@@ -15,7 +17,7 @@ export default function ImageModule({
           src={urlFor(image).url()}
           width={500}
           height={500}
-          alt="Image"
+          alt={alt ?? ""}
           priority
           className="mx-auto rounded shadow-lg h-auto object-cover"
         />

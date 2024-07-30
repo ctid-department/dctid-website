@@ -13,15 +13,18 @@ import { useState } from "react";
 import {cn} from "@/lib/utils";
 
 interface image {
+  alt: string | undefined;
   caption: string | undefined;
   image: any | undefined;
 }
 
 export default function Slideshow({
   caption,
+  alt,
   images
 }: Partial<{
   caption: string;
+  alt: string;
   images: image[];
 }>) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -103,7 +106,7 @@ export default function Slideshow({
               key={idx}
               onLoad={handleLoad}
               src={images ? urlFor(img.image).url() : ""}
-              alt={images ? img.caption ?? "" : ""}
+              alt={alt ?? ""}
               width={500}
               height={500}
               className={imageCSS(idx)}
