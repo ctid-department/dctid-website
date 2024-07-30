@@ -52,6 +52,7 @@ export default defineType({
         {type: 'hero.split'},
         {type: 'articles-list'},
         {type: 'events-list'},
+        {type: 'slideshow'},
       ],
     },
   ],

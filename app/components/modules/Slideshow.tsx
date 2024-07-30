@@ -43,7 +43,7 @@ export default function Slideshow({
     "bg-slate-500"
   )
 
-  const imageCSS = cn("mx-[-60px] w-[100vw] md:w-[640px] h-[480px] object-cover bg-rose-500")
+  const imageCSS = cn("mx-[-60px] w-[100vw] md:w-[640px] h-[480px] bg-rose-500")
 
   const buttonCSS = cn(
     "w-[50px] h-[50px] rounded-full",
@@ -68,10 +68,10 @@ export default function Slideshow({
       <div className="flex flex-row justify-center items-center content-between">
         <button onClick={handleLeft} className={cn(buttonCSS, "")}><FaAngleLeft /></button>
         <Image
-              src={images ? urlFor(images[currentIndex]).url() : ""}
+              src={images ? urlFor(images[currentIndex].image).url() : ""}
               alt={images ? images[currentIndex].caption ?? "" : ""}
-              width={0}
-              height={0}
+              width={500}
+              height={500}
               className={imageCSS}
               priority
               />
