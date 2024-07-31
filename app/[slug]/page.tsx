@@ -49,7 +49,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </h1>
           <Modules modules={data?.modules} />
         </div>
-        <div> {params.slug === "news" ? <ArchivesList /> : <></>}</div>
+        {params.slug === "news" ? <ArchivesList /> : <></>}
       </div>
     </>
   );
