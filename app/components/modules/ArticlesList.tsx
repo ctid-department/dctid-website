@@ -76,10 +76,10 @@ const ArticlesList: React.FC<Props> = async ({
           />
         ))}
         {showButton ? (
-          <Card className="shadow rounded my-auto h-max md:col-span-2">
-            <CardContent className="p-4">
+          <Card className={`shadow rounded my-auto h-max ${data.length % 2 == 0 ? "md:col-span-2" : ""}`}>
+            <CardContent className="p-0" >
               <Link href="/news">
-                <h3 className="text-md line-clamp-2 font-semibold text-center text-ctid-taupe hover:underline">
+                <h3 className="p-4 text-md line-clamp-2 font-semibold text-center text-ctid-taupe hover:underline">
                   View all
                 </h3>
               </Link>
