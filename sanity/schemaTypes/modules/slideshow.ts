@@ -8,12 +8,6 @@ export default defineType({
   icon: LuGalleryThumbnails,
   type: 'object',
   fields: [
-    defineField({
-      name: 'caption',
-      type: 'string',
-      title: 'Caption',
-      validation: (Rule) => Rule.required(),
-    }),
     {
       name: 'images',
       type: 'array',

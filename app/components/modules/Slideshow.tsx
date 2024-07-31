@@ -42,10 +42,6 @@ export default function Slideshow({
     cycleIndex(1)
   }
 
-  const toggleCaption = () => {
-    setCaptionHidden(!captionHidden)
-  }
-
   const wrapperCSS = cn(
     "w-[90vw] md:w-[640px] h-[480px] m-auto",
     "my-3",
@@ -53,7 +49,7 @@ export default function Slideshow({
   )
 
   const slideshowCaptionCSS = cn(
-    "w-[90vw] md:w-[640px] m-auto",
+    "w-[90vw] md:w-[640px] m-auto text-center",
     "italic text-ctid-charcoal"
   )
 
@@ -117,9 +113,8 @@ export default function Slideshow({
           }
         </div>
       </div>
-      <p className={captionCSS} onClick={toggleCaption}>{images ? images[currentIndex].caption : ""}</p>
     </div>
-    {caption ? <p className={slideshowCaptionCSS}>{caption}</p> : <></>}
+    <p className={slideshowCaptionCSS}>{images ? images[currentIndex].caption : ""}</p>
     </>
   );
 }
