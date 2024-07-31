@@ -9,7 +9,7 @@ import SearchBar from "./SearchBar";
 export default async function Header() {
   return (
     <header className="bg-ctid-green text-white">
-      <div className="max-w-5xl w-full flex flex-col items-center mx-auto px-4 py-4 md:flex-row justify-between">
+      <div className="max-w-5xl w-full flex flex-col items-center mx-auto p-4 md:flex-row justify-between">
         <div className="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
           <div className="flex items-center">
             <Link href="/">
