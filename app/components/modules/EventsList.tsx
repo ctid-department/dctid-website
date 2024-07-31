@@ -76,7 +76,6 @@ const EventsList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
                 <span className="text-xs">({formatDateDiff(dateDiff(event.date))})</span>
               </div>
             </div>
-            { /*<Separator orientation="vertical" />*/ }
             <DateSeparator />
             <Link
               className="items-center flex font-medium md:text-lg text-ctid-taupe my-4 hover:underline flex-grow"
