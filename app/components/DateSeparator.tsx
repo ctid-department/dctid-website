@@ -1,4 +1,3 @@
-"use client";
 import { FaCircle } from "react-icons/fa";
 import {cn} from "@/lib/utils";
 
