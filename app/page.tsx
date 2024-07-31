@@ -3,7 +3,6 @@ import { client, urlFor } from "./lib/sanity";
 import Modules from "./components/Modules";
 import SearchResults from "./components/SearchResults";
 import Hero from "./components/Hero";
-import FeatureList from "./components/FeatureList";
 
 export const revalidate = 30;
 
@@ -80,10 +79,7 @@ export default async function Page({
 
   return (
     <>
-      {data.heroImage ? <Hero src={urlFor(data.heroImage).url()} /> : <></>}
-      
-      <FeatureList />
-      
+      {data.heroImage ? <Hero src={urlFor(data.heroImage).url()} /> : <></>}      
       <div className="my-4 mt-8">
         <h1>
           <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
