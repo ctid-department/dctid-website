@@ -78,16 +78,7 @@ export default async function Article({
           {formatDate(data.date)}
         </span>
       </h1>
-
-      <Image
-        src={urlFor(data.heroImage).url()}
-        width={800}
-        height={800}
-        alt="Hero Image"
-        priority
-        className="rounded-lg mt-4 border w-full"
-      />
-
+      
       <div className="max-w-3xl mx-auto">
         <Modules modules={data?.modules} />
       </div>
