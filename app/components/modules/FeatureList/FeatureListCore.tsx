@@ -84,8 +84,9 @@ const FeatureListCore: React.FC<Props> = ({
     <div className={CSS.articleList}>
       {
         data?.map((article: any, idx: any)=>(
-          idx == 0 ? <></> :
-          <FeatureItem key={idx}
+          idx == 0 ? <div className="hidden" key={idx}></div> :
+          <FeatureItem
+            key={idx}
             title={article.title}
             href={`/news/${article.currentSlug}`}
             date={article.date}
