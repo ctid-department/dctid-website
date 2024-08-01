@@ -34,6 +34,7 @@ export default defineType({
         {type: 'richtext-module'},
         {type: 'image-module'},
         {type: 'hero.split'},
+        {type: 'feature-list'},
         {type: 'articles-list'},
         {type: 'events-list'},
         {type: 'profile-card'},

@@ -3,7 +3,7 @@ import { client, urlFor } from "./lib/sanity";
 import Modules from "./components/Modules";
 import SearchResults from "./components/SearchResults";
 import Hero from "./components/Hero";
-
+import FeatureList from "./components/modules/FeatureList";
 export const revalidate = 30;
 
 async function getPageData() {

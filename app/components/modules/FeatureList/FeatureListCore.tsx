@@ -2,6 +2,7 @@
 
 import React, {useState} from "react"
 import {cn} from "@/lib/utils";
+import { urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import Link from "next/link"
 
@@ -11,29 +12,30 @@ import { GoDot } from "react-icons/go";
 import FeatureItem from "./FeatureItem"
 
 interface Props {
-  articles?: any;
+  data: any;
+  showButton: boolean;
 }
 
-const FeatureList: React.FC<Props> = ({
-  articles,
+const FeatureListCore: React.FC<Props> = ({
+  data,
+  showButton
 }) => {
-
-  const sampleArticles = [0, 0, 0, 0]
 
   const CSS = {
     wrapper: cn(
       "w-full p-4 my-4",
     ),
     featuredWrapper: cn(
+      "group",
       "md:flex",
       "md:pb-2"
     ),
     featuredImage: cn(
       "w-full h-[25vh]",
       "md:w-2/3 md:h-[50vh]",
-      "",
-      "shadow-lg",
-      "rounded-sm"
+      "shadow-md",
+      "border border-gray-200",
+      "rounded-md"
     ),
     featuredInfo: cn(
       "mb-4",
@@ -48,13 +50,15 @@ const FeatureList: React.FC<Props> = ({
       "mt-2",
     ),
     readMore: cn(
-      "text-sm text-ctid-taupe"
+      "text-sm text-ctid-taupe",
+      "group-hover:underline"
     ),
 
     articleList: cn(
       "pt-2",
       "border-t border-ctid-taupe",
-      "md:flex md:flex-row md:items-center"
+      "md:flex md:flex-row md:items-center",
+      "gap-3"
     ),
 
     viewAllButton: cn(
@@ -71,23 +75,29 @@ const FeatureList: React.FC<Props> = ({
   }
 
   return (<div className={CSS.wrapper}>
-    <Link href="" className={CSS.featuredWrapper}>
-      <Image className={CSS.featuredImage} src={""} width={0} height={0} alt=""/>
+    <Link href={`/news/${data[0].currentSlug}`} className={CSS.featuredWrapper}>
+      <Image className={CSS.featuredImage} src={urlFor(data[0].heroImage).url()} width={640} height={480} alt=""/>
       <div className={CSS.featuredInfo}>
-        <h1 className={CSS.featuredHeader}>{"BSID Graduates Join the 1st Gabi ng Parangal Para sa mga Alumni 2024"}</h1>
+        <h1 className={CSS.featuredHeader}>{data[0].title ?? "BSID Graduates Join the 1st Gabi ng Parangal Para sa mga Alumni 2024"}</h1>
         <p className={CSS.featuredIntro}>{"Associate Professor and former Dean of the UP College of Home Economics (CHE), Dr. Adelaida Mayo, was honored with the first-ever Home Economics Lifetime Achievement Award by the Philippine Association for Technology in Home Economics of State Colleges..."}</p>
         <span className={CSS.readMore} >Read more</span>
       </div>
     </Link>
     <div className={CSS.articleList}>
       {
-        sampleArticles.map((item, idx)=>(
-          <FeatureItem articleItem={item} key={idx} />
+        data?.map((article: any, idx: any)=>(
+          idx == 0 ? <></> :
+          <FeatureItem key={idx}
+            title={article.title}
+            href={`/news/${article.currentSlug}`}
+            date={article.date}
+            imageSrc={urlFor(article.heroImage).url()}
+          />
         ))
       }
-      <Link className={CSS.viewAllButton} href="">View All ›</Link>
+      {showButton ? <Link className={CSS.viewAllButton} href="/news"><span>View All ›</span></Link> : <></>}
     </div>
   </div>)
 }
 
-export default FeatureList;
+export default FeatureListCore;
