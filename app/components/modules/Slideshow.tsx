@@ -45,7 +45,8 @@ export default function Slideshow({
   const wrapperCSS = cn(
     "w-[90vw] md:w-[640px] h-[480px] m-auto",
     "my-3",
-    "bg-black"
+    "bg-black",
+    "rounded-md"
   )
 
   const slideshowCaptionCSS = cn(
@@ -64,6 +65,7 @@ export default function Slideshow({
     "transition-all",
     "absolute top-0 left-0",
     "object-contain",
+    "rounded-md",
     currentIndex == idx ? "opacity-100" : "opacity-0"
   )
 

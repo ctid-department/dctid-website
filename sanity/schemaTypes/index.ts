@@ -6,6 +6,7 @@ import richtextModule from './modules/richtext-module'
 import slideshow from './modules/slideshow'
 import heroSplit from './modules/hero.split'
 import articlesList from './modules/articles-list'
+import featureList from './modules/feature-list'
 import imageModule from './modules/image-module'
 import event from './event'
 import eventsList from './modules/events-list'
@@ -29,5 +30,6 @@ export const schemaTypes = [
   profilesList,
   profile,
   footer,
-  slideshow
+  slideshow,
+  featureList
 ]

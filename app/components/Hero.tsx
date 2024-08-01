@@ -5,16 +5,20 @@ interface Props {
 }
 
 const Hero: React.FC<Props> = async ({ src }) => {
+
   return (
-    <div className="relative w-screen ml-[calc(50%-50vw)] h-[50vh] shadow-xl">
+    <>
+    <div className="w-screen absolute left-0 h-[50vh] shadow-xl">
       <Image
         src={src}
         alt="Hero Image"
         priority
         fill
-        className="object-cover"
+        className="object-cover w-full h-full"
       />
     </div>
+    <div className="h-[50vh]"></div>
+    </>
   );
 };
 

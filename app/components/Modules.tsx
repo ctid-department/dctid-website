@@ -6,6 +6,7 @@ import RichTextModule from "./modules/RichTextModule";
 import ProfileCard from "./modules/ProfileCard";
 import ProfilesList from "./modules/ProfilesList";
 import Slideshow from "./modules/Slideshow";
+import FeatureList from "./modules/FeatureList"
 
 export default function Modules({
   modules,
@@ -34,6 +35,8 @@ export default function Modules({
             return <ProfilesList {...module} key={module._key} />;
           case "slideshow":
             return <Slideshow {...module} key={module._key} />;
+          case "feature-list":
+            return <FeatureList {...module} key={module._key} />;
           default:
             return <div data-type={module._type} key={module._key} />;
         }
