@@ -6,6 +6,7 @@ import RichTextModule from "./modules/RichTextModule";
 import ProfileCard from "./modules/ProfileCard";
 import ProfilesList from "./modules/ProfilesList";
 import Slideshow from "./modules/Slideshow";
+import FeatureList from "./modules/FeatureList"
 
 export default function Modules({
   modules,
