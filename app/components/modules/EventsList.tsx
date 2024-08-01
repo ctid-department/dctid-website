@@ -2,6 +2,8 @@ import React from "react";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import DateSeparator from "../DateSeparator";
+import { dateDiff, formatDateDiff } from "@/lib/utils";
 
 interface Props {
   isCustom: boolean;
@@ -60,17 +62,21 @@ const EventsList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
   }
   // console.log(data);
 
+  const dateNow = new Date()
+
   return (
     <section className="my-8">
       <div className="mx-auto max-w-3xl flex flex-col my-8 px-2">
         {data.map((event: any, idx: number) => (
-          <div key={idx} className="flex gap-4 items-stretch">
+          <div key={idx} className={`flex gap-4 items-stretch`}>
             <div className="flex items-center w-28 flex-shrink-0">
               <div className="my-auto w-full text-center text-sm md:text-base">
-                {formatDate(event.date)}
+                <span>{formatDate(event.date)}</span>
+                <br />
+                <span className="text-xs">({formatDateDiff(dateDiff(event.date))})</span>
               </div>
             </div>
-            <Separator orientation="vertical" />
+            <DateSeparator />
             <Link
               className="items-center flex font-medium md:text-lg text-ctid-taupe my-4 hover:underline flex-grow"
               href={`/events/${event.currentSlug}`}

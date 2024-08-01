@@ -1,6 +1,7 @@
 'use client';
 
 import {cn} from "@/lib/utils"
+import Link from "next/link"
 
 export default function NavList({...props}){
 
@@ -10,6 +11,6 @@ export default function NavList({...props}){
   )
 
   return(
-    <a href={props.href} className={navLinkCSS}>{props.title}</a>
+    <Link href={props.href} className={navLinkCSS}>{props.title}</Link>
   )
 }

@@ -69,7 +69,7 @@ const ProfilesList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
                 className="mx-auto rounded-full h-auto shadow object-cover min-h-full center my-3 self-center"
               />
             </div>
-            <div className="my-3 min-h-full w-60 text-center items-center mx-2">
+            <div className="my-3 w-70 text-center items-center mx-3">
               <div className="text-ctid-taupe font-bold text-base">
                 <PortableText value={profile.name} />
               </div>
