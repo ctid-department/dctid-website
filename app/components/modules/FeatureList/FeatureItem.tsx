@@ -19,12 +19,13 @@ const FeatureItem: React.FC<Props> = ({
 
   const CSS = {
     articleItem: cn(
-      "md:max-w-[20%] md:h-[30vh]",
+      "md:max-w-[20%] md:h-[30vh] p-3",
       "flex flex-row items-top",
       "my-1",
       "md:flex-col md:justify-top",
       "md:flex-grow",
       "hover:bg-gray-200",
+      "rounded-md",
       "transition-all"
     ),
     articleItemImage: cn(
@@ -33,14 +34,17 @@ const FeatureItem: React.FC<Props> = ({
       "my-1 mr-2 md:mx-auto",
       "shadow-md",
       "border border-gray-200",
-      "rounded-md"
+      "rounded-md",
+      "object-cover"
     ),
     articleItemInfo: cn(
       "flex flex-col"
     ),
     articleItemHeader: cn(
-      "w-[90%]",
+      "w-[90%] mb-2",
       "font-semibold text-sm",
+      "text-ctid-taupe",
+      "line-clamp-3"
     ),
     articleItemDate: cn(
       "italic text-xs"

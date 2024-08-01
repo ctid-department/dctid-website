@@ -43,6 +43,11 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'thesis',
+      type: 'string',
+      title: 'Brief Description'
+    },
+    {
       name: 'modules',
       type: 'array',
       title: 'Modules',

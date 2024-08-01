@@ -20,7 +20,8 @@ async function getArticleData(maxItems: number) {
       "currentSlug": slug.current,
       heroImage,
       date,
-      "creationDate": _createdAt
+      "creationDate": _createdAt,
+      thesis
     }
   `;
 

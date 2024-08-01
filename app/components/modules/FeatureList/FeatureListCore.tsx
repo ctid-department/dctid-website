@@ -6,9 +6,6 @@ import { urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import Link from "next/link"
 
-import { GoDotFill } from "react-icons/go";
-import { GoDot } from "react-icons/go";
-
 import FeatureItem from "./FeatureItem"
 
 interface Props {
@@ -32,7 +29,7 @@ const FeatureListCore: React.FC<Props> = ({
     ),
     featuredImage: cn(
       "w-full h-[25vh]",
-      "md:w-2/3 md:h-[50vh]",
+      "md:w-2/3 md:h-[40vh] object-cover",
       "shadow-md",
       "border border-gray-200",
       "rounded-md"
@@ -42,7 +39,9 @@ const FeatureListCore: React.FC<Props> = ({
       "md:w-1/3 md:pl-3"
     ),
     featuredHeader: cn(
-      "font-bold text-xl",
+      "font-bold",
+      data[0].thesis ? "text-xl" : "text-2xl",
+      "text-ctid-taupe",
       "mt-2",
     ),
     featuredIntro: cn(
@@ -56,7 +55,6 @@ const FeatureListCore: React.FC<Props> = ({
 
     articleList: cn(
       "pt-2",
-      "border-t border-ctid-taupe",
       "md:flex md:flex-row md:items-center",
       "gap-3"
     ),
@@ -78,8 +76,8 @@ const FeatureListCore: React.FC<Props> = ({
     <Link href={`/news/${data[0].currentSlug}`} className={CSS.featuredWrapper}>
       <Image className={CSS.featuredImage} src={urlFor(data[0].heroImage).url()} width={640} height={480} alt=""/>
       <div className={CSS.featuredInfo}>
-        <h1 className={CSS.featuredHeader}>{data[0].title ?? "BSID Graduates Join the 1st Gabi ng Parangal Para sa mga Alumni 2024"}</h1>
-        <p className={CSS.featuredIntro}>{"Associate Professor and former Dean of the UP College of Home Economics (CHE), Dr. Adelaida Mayo, was honored with the first-ever Home Economics Lifetime Achievement Award by the Philippine Association for Technology in Home Economics of State Colleges..."}</p>
+        <h1 className={CSS.featuredHeader}>{data[0].title ?? ""}</h1>
+        <p className={CSS.featuredIntro}>{data[0].thesis ?? ""}</p>
         <span className={CSS.readMore} >Read more</span>
       </div>
     </Link>
