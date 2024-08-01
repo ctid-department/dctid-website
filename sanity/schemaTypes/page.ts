@@ -39,6 +39,7 @@ export default defineType({
         {type: 'events-list'},
         {type: 'profile-card'},
         {type: 'profiles-list'},
+        {type: 'slideshow'}
       ],
     },
   ],
