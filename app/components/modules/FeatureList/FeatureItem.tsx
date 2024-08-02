@@ -1,7 +1,15 @@
-
 import Image from "next/image";
-import {cn} from "@/lib/utils";
-import Link from "next/link"
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
+export function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-PH", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 interface Props {
   href: string;
@@ -10,13 +18,7 @@ interface Props {
   imageSrc?: any;
 }
 
-const FeatureItem: React.FC<Props> = ({
-  href,
-  title,
-  date,
-  imageSrc
-}) =>{
-
+const FeatureItem: React.FC<Props> = ({ href, title, date, imageSrc }) => {
   const CSS = {
     articleItem: cn(
       "md:max-w-[20%] p-3",
@@ -37,29 +39,31 @@ const FeatureItem: React.FC<Props> = ({
       "rounded-md",
       "object-cover"
     ),
-    articleItemInfo: cn(
-      "flex flex-col"
-    ),
+    articleItemInfo: cn("flex flex-col"),
     articleItemHeader: cn(
       "w-[90%] mb-1",
       "font-semibold text-sm",
       "text-ctid-taupe",
       "line-clamp-3"
     ),
-    articleItemDate: cn(
-      "italic text-xs"
-    )
-  }
+    articleItemDate: cn("text-xs"),
+  };
 
-  return(
+  return (
     <Link className={CSS.articleItem} href={href ?? ""}>
-      <Image className={CSS.articleItemImage} src={imageSrc ?? ""} width={640} height={480} alt=""/>
+      <Image
+        className={CSS.articleItemImage}
+        src={imageSrc ?? ""}
+        width={640}
+        height={480}
+        alt=""
+      />
       <div className={CSS.articleItemInfo}>
         <h2 className={CSS.articleItemHeader}>{title ?? ""}</h2>
-        <p className={CSS.articleItemDate}>{date ?? ""}</p>
+        <p className={CSS.articleItemDate}>{date ? formatDate(date) : ""}</p>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 export default FeatureItem;
