@@ -35,6 +35,9 @@ export async function generateMetadata(
         "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCTID-logo.ff21eeda.png&w=128&q=75",
       ],
     },
+    verification: {
+      google: "QK9l5bDVzPjEM8n4Rr1yYaH0-eqCScKpE6VXlRymcaU",
+    },
   };
 }
 
