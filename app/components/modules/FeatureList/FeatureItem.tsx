@@ -19,7 +19,7 @@ const FeatureItem: React.FC<Props> = ({
 
   const CSS = {
     articleItem: cn(
-      "md:max-w-[20%] md:h-[30vh] p-3",
+      "md:max-w-[20%] p-3",
       "flex flex-row items-top",
       "my-1",
       "md:flex-col md:justify-top",
@@ -29,8 +29,8 @@ const FeatureItem: React.FC<Props> = ({
       "transition-all"
     ),
     articleItemImage: cn(
-      "w-[100px] h-[15vh]",
-      "md:w-[100%]",
+      "w-[100px]",
+      "md:w-[100%] md:h-[15vh]",
       "my-1 mr-2 md:mx-auto",
       "shadow-md",
       "border border-gray-200",
@@ -41,7 +41,7 @@ const FeatureItem: React.FC<Props> = ({
       "flex flex-col"
     ),
     articleItemHeader: cn(
-      "w-[90%] mb-2",
+      "w-[90%] mb-1",
       "font-semibold text-sm",
       "text-ctid-taupe",
       "line-clamp-3"

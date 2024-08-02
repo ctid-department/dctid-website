@@ -25,7 +25,10 @@ const FeatureListCore: React.FC<Props> = ({
     featuredWrapper: cn(
       "group",
       "md:flex",
-      "md:pb-2"
+      "md:p-2",
+      "hover:bg-gray-200",
+      "rounded-md",
+      "transition-all"
     ),
     featuredImage: cn(
       "w-full h-[25vh]",
@@ -68,6 +71,7 @@ const FeatureListCore: React.FC<Props> = ({
       "align-middle",
       "hover:underline hover:bg-gray-200",
       "active:bg-ctid-taupe active:text-white",
+      "rounded-md",
       "transition-all"
     ),
   }
