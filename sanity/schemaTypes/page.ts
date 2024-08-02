@@ -33,6 +33,7 @@ export default defineType({
       of: [
         {type: 'richtext-module'},
         {type: 'image-module'},
+        {type: 'video-module'},
         {type: 'hero.split'},
         {type: 'feature-list'},
         {type: 'articles-list'},
