@@ -28,12 +28,16 @@ export async function generateMetadata(
   const data = await getMetadata();
 
   return {
+    metadataBase: new URL("https://up-dctid.vercel.app"),
     title: data.title,
     description: data.description,
     openGraph: {
       images: [
         "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FCTID-logo.ff21eeda.png&w=128&q=75",
       ],
+    },
+    verification: {
+      google: "QK9l5bDVzPjEM8n4Rr1yYaH0-eqCScKpE6VXlRymcaU",
     },
   };
 }
