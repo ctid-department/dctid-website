@@ -47,6 +47,7 @@ const FeatureListCore: React.FC<Props> = ({
       "text-ctid-taupe",
       "mt-2",
     ),
+    featuredDate: cn("text-xs"),
     featuredIntro: cn(
       "text-sm",
       "mt-2",
@@ -81,6 +82,7 @@ const FeatureListCore: React.FC<Props> = ({
       <Image className={CSS.featuredImage} src={urlFor(data[0].heroImage).url()} width={640} height={480} alt=""/>
       <div className={CSS.featuredInfo}>
         <h1 className={CSS.featuredHeader}>{data[0].title ?? ""}</h1>
+        <p className={CSS.featuredDate}>{data[0].date ?? "12/06/2000"}</p>
         <p className={CSS.featuredIntro}>{data[0].thesis ?? ""}</p>
         <span className={CSS.readMore} >Read more</span>
       </div>

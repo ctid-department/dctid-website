@@ -22,7 +22,7 @@ const FeatureItem: React.FC<Props> = ({
       "md:max-w-[20%] p-3",
       "flex flex-row items-top",
       "my-1",
-      "md:flex-col md:justify-top",
+      "md:flex-col md:self-start",
       "md:flex-grow",
       "hover:bg-gray-200",
       "rounded-md",
@@ -55,8 +55,8 @@ const FeatureItem: React.FC<Props> = ({
     <Link className={CSS.articleItem} href={href ?? ""}>
       <Image className={CSS.articleItemImage} src={imageSrc ?? ""} width={640} height={480} alt=""/>
       <div className={CSS.articleItemInfo}>
-        <h2 className={CSS.articleItemHeader}>{title ?? "BSID Graduates Join the 1st Gabi ng Parangal Para sa mga Alumni 2024"}</h2>
-        <p className={CSS.articleItemDate}>{date ?? "12/06/2000"}</p>
+        <h2 className={CSS.articleItemHeader}>{title ?? ""}</h2>
+        <p className={CSS.articleItemDate}>{date ?? ""}</p>
       </div>
     </Link>
   )
