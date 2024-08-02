@@ -5,6 +5,7 @@ import {schemaTypes} from './schemaTypes'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import {GrNavigate, GrUserNew} from 'react-icons/gr'
 import {TfiLayoutMediaOverlay} from 'react-icons/tfi'
+import {TbFileInfo} from 'react-icons/tb'
 
 export default defineConfig({
   name: 'default',
@@ -40,6 +41,10 @@ export default defineConfig({
               .title('Footer')
               .icon(TfiLayoutMediaOverlay)
               .child(S.document().schemaType('footer').documentId('footer')),
+            S.listItem()
+              .title('Metadata')
+              .icon(TbFileInfo)
+              .child(S.document().schemaType('metadata').documentId('metadata')),
           ]),
     }),
 
