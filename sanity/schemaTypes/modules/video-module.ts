@@ -10,7 +10,7 @@ export default defineType({
     defineField({
       name: 'url',
       type: 'string',
-      title: 'URL',
+      title: 'Youtube URL',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
