@@ -54,7 +54,7 @@ export default function SearchBar() {
       ) : (
         <div className="flex items-center gap-2">
           <Input
-            className="text-black focus:!ring-ctid-green py-0 h-8"
+            className="text-black focus:!ring-ctid-green py-0 h-8 max-w-[48dvw]"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
