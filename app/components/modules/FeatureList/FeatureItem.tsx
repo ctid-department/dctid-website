@@ -22,7 +22,7 @@ const FeatureItem: React.FC<Props> = ({
       "md:max-w-[20%] p-3",
       "flex flex-row items-top",
       "my-1",
-      "md:flex-col md:self-start",
+      "md:flex-col md:self-stretch",
       "md:flex-grow",
       "hover:bg-gray-200",
       "rounded-md",
