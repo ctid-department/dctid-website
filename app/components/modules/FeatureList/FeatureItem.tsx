@@ -1,7 +1,15 @@
-
 import Image from "next/image";
-import {cn} from "@/lib/utils";
-import Link from "next/link"
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
+export function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-PH", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 interface Props {
   href: string;
@@ -10,56 +18,52 @@ interface Props {
   imageSrc?: any;
 }
 
-const FeatureItem: React.FC<Props> = ({
-  href,
-  title,
-  date,
-  imageSrc
-}) =>{
-
+const FeatureItem: React.FC<Props> = ({ href, title, date, imageSrc }) => {
   const CSS = {
     articleItem: cn(
-      "md:max-w-[20%] md:h-[30vh] p-3",
+      "md:max-w-[20%] p-3",
       "flex flex-row items-top",
       "my-1",
-      "md:flex-col md:justify-top",
+      "md:flex-col md:self-stretch",
       "md:flex-grow",
       "hover:bg-gray-200",
       "rounded-md",
       "transition-all"
     ),
     articleItemImage: cn(
-      "w-[100px] h-[15vh]",
-      "md:w-[100%]",
+      "w-[100px]",
+      "md:w-[100%] md:h-[15vh]",
       "my-1 mr-2 md:mx-auto",
       "shadow-md",
       "border border-gray-200",
       "rounded-md",
       "object-cover"
     ),
-    articleItemInfo: cn(
-      "flex flex-col"
-    ),
+    articleItemInfo: cn("flex flex-col"),
     articleItemHeader: cn(
-      "w-[90%] mb-2",
+      "w-[90%] mb-1",
       "font-semibold text-sm",
       "text-ctid-taupe",
       "line-clamp-3"
     ),
-    articleItemDate: cn(
-      "italic text-xs"
-    )
-  }
+    articleItemDate: cn("text-xs"),
+  };
 
-  return(
+  return (
     <Link className={CSS.articleItem} href={href ?? ""}>
-      <Image className={CSS.articleItemImage} src={imageSrc ?? ""} width={640} height={480} alt=""/>
+      <Image
+        className={CSS.articleItemImage}
+        src={imageSrc ?? ""}
+        width={640}
+        height={480}
+        alt=""
+      />
       <div className={CSS.articleItemInfo}>
-        <h2 className={CSS.articleItemHeader}>{title ?? "BSID Graduates Join the 1st Gabi ng Parangal Para sa mga Alumni 2024"}</h2>
-        <p className={CSS.articleItemDate}>{date ?? "12/06/2000"}</p>
+        <h2 className={CSS.articleItemHeader}>{title ?? ""}</h2>
+        <p className={CSS.articleItemDate}>{date ? formatDate(date) : ""}</p>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 export default FeatureItem;

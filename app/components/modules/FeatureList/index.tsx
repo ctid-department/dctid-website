@@ -60,8 +60,10 @@ const FeatureList: React.FC<Props> = async ({
     data = await getArticleData(5);
   }
 
-  return (
+  return data.length > 0 ? (
     <FeatureListCore data={data} showButton={showButton} />
+  ) : (
+    <></>
   );
 };
 

@@ -57,7 +57,7 @@ const ProfilesList: React.FC<Props> = async ({ isCustom, maxItems, items }) => {
         {data.map((profile, idx) => (
           <section
             key={idx}
-            className="drop-shadow-lg bg-ctid-beige rounded-lg content-center w-70 h-80"
+            className="drop-shadow-lg bg-ctid-beige rounded-lg content-center md:content-start md:py-4 w-70 h-80"
           >
             <div className="">
               <Image

@@ -71,13 +71,15 @@ const ArticlesList: React.FC<Props> = async ({
             key={idx}
             title={article.title}
             href={`/news/${article.currentSlug}`}
-            date={article.date}
+            date={formatDate(article.date)}
             imageSrc={urlFor(article.heroImage).url()}
           />
         ))}
         {showButton ? (
-          <Card className={`shadow rounded my-auto h-max ${data.length % 2 == 0 ? "md:col-span-2" : ""}`}>
-            <CardContent className="p-0" >
+          <Card
+            className={`shadow rounded my-auto h-max ${data.length % 2 == 0 ? "md:col-span-2" : ""}`}
+          >
+            <CardContent className="p-0">
               <Link href="/news">
                 <h3 className="p-4 text-md line-clamp-2 font-semibold text-center text-ctid-taupe hover:underline">
                   View all
