@@ -14,6 +14,7 @@ import profileCard from './modules/profile-card'
 import profilesList from './modules/profiles-list'
 import profile from './profile'
 import footer from './footer'
+import metadata from './metadata'
 
 export const schemaTypes = [
   article,
@@ -31,5 +32,6 @@ export const schemaTypes = [
   profile,
   footer,
   slideshow,
-  featureList
+  featureList,
+  metadata,
 ]
