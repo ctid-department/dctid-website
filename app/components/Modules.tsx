@@ -2,6 +2,7 @@ import ArticlesList from "./modules/ArticlesList";
 import EventsList from "./modules/EventsList";
 import HeroSplit from "./modules/HeroSplit";
 import ImageModule from "./modules/ImageModule";
+import VideoModule from "./modules/VideoModule";
 import RichTextModule from "./modules/RichTextModule";
 import ProfileCard from "./modules/ProfileCard";
 import ProfilesList from "./modules/ProfilesList";
@@ -29,6 +30,8 @@ export default function Modules({
             return <EventsList {...module} key={module._key} />;
           case "image-module":
             return <ImageModule {...module} key={module._key} />;
+          case "video-module":
+            return <VideoModule {...module} key={module._key} />;
           case "profile-card":
             return <ProfileCard {...module} key={module._key} />;
           case "profiles-list":

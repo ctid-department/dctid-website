@@ -22,11 +22,11 @@ async function getPageData(slug: string) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const data: fullPage = await getPageData(params.slug);
+  const pageData: fullPage = await getPageData(params.slug);
 
   // console.log(data);
 
-  if (!data) {
+  if (!pageData) {
     return (
       <div className="min-h-80 text-center mt-16">
         <h1 className="text-3xl font-bold text-ctid-taupe">
@@ -39,15 +39,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      {data.heroImage ? <Hero src={urlFor(data.heroImage).url()} /> : <></>}
+      {pageData.heroImage ? (
+        <Hero src={urlFor(pageData.heroImage).url()} />
+      ) : (
+        <></>
+      )}
       <div className="my-4 mt-8 flex flex-col md:flex-row md:gap-16">
         <div>
           <h1>
             <span className="mt-2 block text-lg md:text-2xl text-center leading-8 font-bold uppercase text-ctid-taupe">
-              {data.title}
+              {pageData.title}
             </span>
           </h1>
-          <Modules modules={data?.modules} />
+          <Modules modules={pageData?.modules} />
         </div>
         {params.slug === "news" ? <ArchivesList /> : <></>}
       </div>
