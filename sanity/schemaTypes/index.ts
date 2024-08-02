@@ -8,6 +8,7 @@ import heroSplit from './modules/hero.split'
 import articlesList from './modules/articles-list'
 import featureList from './modules/feature-list'
 import imageModule from './modules/image-module'
+import videoModule from './modules/video-module'
 import event from './event'
 import eventsList from './modules/events-list'
 import profileCard from './modules/profile-card'
@@ -33,5 +34,6 @@ export const schemaTypes = [
   footer,
   slideshow,
   featureList,
-  metadata,
+  videoModule,
+  metadata
 ]
