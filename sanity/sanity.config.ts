@@ -9,7 +9,7 @@ import {TbFileInfo} from 'react-icons/tb'
 
 export default defineConfig({
   name: 'default',
-  title: 'CTID Website',
+  title: 'DCTID Website',
 
   projectId: 'hnjzgegk',
   dataset: 'production',
