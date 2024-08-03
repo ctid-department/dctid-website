@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) to serve as a website for a college department. The website content is managed using Sanity. 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) to serve as a website for the Department of Clothing, Textiles, and Interior Design of UP Diliman. The website content is managed using Sanity. 
 
 ## Getting Started
 
